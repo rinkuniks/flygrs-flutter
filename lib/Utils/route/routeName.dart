@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RouteName{
+class RouteName {
   //PreAuthRoutes name
   static const String splash = 'splashView';
   static const String getStartedScreen = 'getStartedScreen';
