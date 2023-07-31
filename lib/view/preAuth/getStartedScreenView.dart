@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 
@@ -9,21 +10,50 @@ class GetStartedScreen extends StatefulWidget {
 }
 
 class _GetStartedScreenState extends State<GetStartedScreen> {
+  final PageController _pageController = PageController(initialPage: 0);
+  int pageIndex = 0;
+  int _activePage = 0;
+
+  List<Widget> _list(BuildContext context) {
+    return [
+      const Center(
+          child: Pages(
+        title: "Qwerty",
+        subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
+        imgPath: "assets/images/getStartedImage.png",
+      )),
+      const Center(
+          child: Pages(
+        title: "Sam House",
+        subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
+        imgPath: "assets/images/getStartedImage.png",
+      )),
+      const Center(
+          child: Pages(
+        title: "Micheal Jackson",
+        subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
+        imgPath: "assets/images/getStartedImage.png",
+      )),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: <Widget>[
+            // carousel UI
             Expanded(
-              flex: 6,
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                color: AppColors.primaryBackgroundColor,
-                child: Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
+              flex: 8,
+              child: Column(
+                children: [
+                  // Skip Btn UI
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 24, right: 24),
+                      color: AppColors.primaryBackgroundColor,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -54,47 +84,146 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                         ],
                       ),
                     ),
-                    Container(
-                      child: ClipRRect(
-                        child: Image.asset(
-                          'assets/images/getStartedImage.png',
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
+                  // Image Scrollable UI
+                  Expanded(
+                    flex: 9,
+                    child: PageView.builder(
+                      controller: _pageController,
+                      allowImplicitScrolling: true,
+                      //  children: _list,
+                      scrollDirection: Axis.horizontal,
+                      reverse: false,
+                      physics: const BouncingScrollPhysics(),
+                      // controller: controller,
+                      onPageChanged: (int pages) {
+                        setState(() {
+                          _activePage = pages;
+                        });
+                      },
+                      itemCount: _list(context).length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return _list(context).elementAt(index);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // Triple Dot UI
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: AppColors.white,
+                padding: const EdgeInsets.only(left: 24, top: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List<Widget>.generate(
+                      _list(context).length,
+                      (index) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: InkWell(
+                              onTap: () {
+                                _pageController.animateToPage(index,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeIn);
+                              },
+                              child: CircleAvatar(
+                                radius: 7,
+                                backgroundColor: _activePage == index
+                                    ? AppColors.activeDot
+                                    : AppColors.deActiveDot,
+                              ),
+                            ),
+                          )),
                 ),
               ),
             ),
+            // Button UI
             Expanded(
-              flex: 4,
+              flex: 1,
               child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(20),
                 color: AppColors.white,
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Lorem Ipsum",
-                      style: TextStyle(
-                          color: AppColors.black,
-                          fontSize: 36,
-                          fontWeight: FontWeight.w900),
-                    ),
-                    Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-                      style: TextStyle(
-                          color: AppColors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
+                padding: const EdgeInsets.only(left: 24),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: GestureDetector(
+                      child: Container(
+                          width: 120,
+                          height: 40,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: Colors.black,
+                            image: DecorationImage(
+                                image: AssetImage("assets/images/btnBg.png"),
+                                fit: BoxFit.cover),
+                          ),
+                          child: const Text("Get Started",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Poppins",
+                                  color: AppColors.white))),
+                      onTap: () {
+                        if (kDebugMode) {
+                          print("you clicked me");
+                        }
+                      }),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+}
+
+class Pages extends StatelessWidget {
+  final title;
+  final subTitle;
+
+  // final color;
+  final imgPath;
+
+  const Pages({super.key, this.title, this.subTitle, this.imgPath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.all(24),
+            color: AppColors.primaryBackgroundColor,
+            child: Image.asset(
+              imgPath,
+              fit: BoxFit.fill,
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(fontSize: 36,
+                  fontWeight: FontWeight.w900,
+                  color: AppColors.black),
+                ),
+                Text(
+                  subTitle,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(fontSize: 24,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.black),
+                ),
+              ],
+            ),
+          ),
+        ]);
   }
 }

@@ -22,11 +22,12 @@ class AppColors {
   static const Color secondaryButtonBackgroundColor = Color(0xff000000);
   static const Color tertiaryButtonBackgroundColor = Colors.green;
 
-
   //Common Colors
   static const Color black = Color(0xff000000);
   static const Color white = Color(0xffFFFFFF);
   static const Color grey = Colors.grey;
   static const Color shinnySilver = Color(0xffEEEEEE);
   static const Color shadowsGrey = Color(0xff36393D);
+  static const Color activeDot = Color(0XFF3433F2);
+  static const Color deActiveDot = Color(0XFFC4C4C4);
 }
