@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/res/components/AppTextField.dart';
+import '../../res/components/AppTextField.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -11,43 +13,159 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child:
-    Scaffold(
-      backgroundColor:  AppColors.secondaryBackgroundColor,
+    return SafeArea(
+        child: Scaffold(
+      backgroundColor: AppColors.secondaryBackgroundColor,
       body: Column(
         children: [
-           Expanded(
-             flex: 2,
-             child: Container(
-               color: Colors.red,
-               child: ClipRRect(
-                 child: Image.asset('assets/images/getStartedImage.png',
-                   height: 50,
-                   width: 50,
-                 ),
-               ),
-             ),
-           ),
           Expanded(
-            flex: 5,
+            flex: 1,
+            child: Container(
+              color: Colors.red,
+              child: ClipRRect(
+                child: Image.asset(
+                  'assets/images/getStartedImage.png',
+                  height: 50,
+                  width: 50,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 6,
             child: Stack(
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child:  Container(
-                      color: Colors.white,
-                      width: MediaQuery.of(context).size.width-40,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-
-                            ],
-                          )
-                        ],
-                      ),
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    color: Colors.white,
+                    width: MediaQuery.of(context).size.width - 40,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                                child: SizedBox(
+                              height: 50,
+                              child: TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                      backgroundColor:
+                                          AppColors.primaryBackgroundColor),
+                                  child: Text(
+                                    "Sign Up",
+                                    style: TextStyle(color: Colors.white),
+                                  )),
+                            )),
+                            Expanded(
+                                child: SizedBox(
+                              height: 50,
+                              child: TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                      backgroundColor:
+                                          AppColors.secondaryBackgroundColor),
+                                  child: Text("Sign In")),
+                            )),
+                          ],
+                        ),
+                        AppTextField(
+                            textInputAction: TextInputAction.done,
+                            validator: (input) {
+                              // String? validatorString =
+                              //     Validation.passwordValidator(input, context);
+                              // if (validatorString.isNotEmpty) {
+                              //   return validatorString;
+                              // }
+                              // return null;
+                            },
+                            // fieldKey: _passwordFieldKey,
+                            //  hintText: 'Password',
+                            obSecure: false,
+                            isPassword: false,
+                            onSaved: (input) => {}
+                            //_password = input.toString(),
+                            ),
+                        AppTextField(
+                            textInputAction: TextInputAction.done,
+                            validator: (input) {
+                              // String? validatorString =
+                              //     Validation.passwordValidator(input, context);
+                              // if (validatorString.isNotEmpty) {
+                              //   return validatorString;
+                              // }
+                              // return null;
+                            },
+                            // fieldKey: _passwordFieldKey,
+                            //  hintText: 'Password',
+                            obSecure: false,
+                            isPassword: false,
+                            onSaved: (input) => {}
+                            //_password = input.toString(),
+                            ),
+                        AppTextField(
+                            textInputAction: TextInputAction.done,
+                            validator: (input) {
+                              // String? validatorString =
+                              //     Validation.passwordValidator(input, context);
+                              // if (validatorString.isNotEmpty) {
+                              //   return validatorString;
+                              // }
+                              // return null;
+                            },
+                            // fieldKey: _passwordFieldKey,
+                            //  hintText: 'Password',
+                            obSecure: false,
+                            isPassword: false,
+                            onSaved: (input) => {}
+                            //_password = input.toString(),
+                            ),
+                        AppTextField(
+                            textInputAction: TextInputAction.done,
+                            validator: (input) {
+                              // String? validatorString =
+                              //     Validation.passwordValidator(input, context);
+                              // if (validatorString.isNotEmpty) {
+                              //   return validatorString;
+                              // }
+                              // return null;
+                            },
+                            // fieldKey: _passwordFieldKey,
+                            //  hintText: 'Password',
+                            obSecure: false,
+                            isPassword: false,
+                            onSaved: (input) => {}
+                            //_password = input.toString(),
+                            ),
+                        AppTextField(
+                            textInputAction: TextInputAction.done,
+                            validator: (input) {
+                              // String? validatorString =
+                              //     Validation.passwordValidator(input, context);
+                              // if (validatorString.isNotEmpty) {
+                              //   return validatorString;
+                              // }
+                              // return null;
+                            },
+                            // fieldKey: _passwordFieldKey,
+                            //  hintText: 'Password',
+                            obSecure: false,
+                            isPassword: false,
+                            onSaved: (input) => {}
+                            //_password = input.toString(),
+                            ),
+                      ],
                     ),
+                  ),
                 ),
+                TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                        backgroundColor: AppColors.primaryBackgroundColor),
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(color: Colors.white),
+                    )),
               ],
             ),
           ),

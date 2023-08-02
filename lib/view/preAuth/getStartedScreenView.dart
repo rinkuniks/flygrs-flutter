@@ -35,15 +35,17 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                           ),
                           Row(
                             children: [
-                              InkWell(child:
-                              const Text(
-                                "Skip",
-                                style: TextStyle(
-                                    fontSize: 12, color: AppColors.white),
-                              ),
-                                onTap: () {Navigator.pushNamed(context, RouteName.signUp);},
+                              InkWell(
+                                child: const Text(
+                                  "Skip",
+                                  style: TextStyle(
+                                      fontSize: 12, color: AppColors.white),
                                 ),
-
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, RouteName.signupLogin);
+                                },
+                              ),
                               const SizedBox(
                                 width: 5,
                               ),
