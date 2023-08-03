@@ -31,4 +31,6 @@ class AppColors {
   static const Color grey = Colors.grey;
   static const Color shinnySilver = Color(0xffEEEEEE);
   static const Color shadowsGrey = Color(0xff36393D);
+  static const Color activeDot = Color(0XFF3433F2);
+  static const Color deActiveDot = Color(0XFFC4C4C4);
 }
