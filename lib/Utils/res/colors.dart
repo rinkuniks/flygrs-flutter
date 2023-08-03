@@ -18,6 +18,7 @@ class AppColors {
   static const Color gradient1 = Color(0xff01274E);
   static const Color gradient2 = Color(0xff07529C);
   static const Color gradient3 = Color(0xff003060);
+  static const Color rememberMeButtonColor = Color(0xff4096EE);
 
   //Button Background Color
   static const Color primaryButtonBackgroundColor = Color(0xFF3433F2);

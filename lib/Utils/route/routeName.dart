@@ -7,7 +7,6 @@ class RouteName {
 
   // Auth routes name
   static const String login = 'login_screen';
-  static const String signUp = 'sign_up';
   static const String signupLogin = 'signupLogin';
 
   // home screen routes name
