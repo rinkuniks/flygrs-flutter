@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flygrs/view/account/account.dart';
 import 'package:flygrs/view/activity/activity.dart';
 import 'package:flygrs/view/home/home_screen.dart';
+import '../../Utils/res/Assets.dart';
 import '../../Utils/res/colors.dart';
 
 class BottomNavigation extends StatelessWidget {
