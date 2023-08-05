@@ -11,8 +11,13 @@ class Assets{
 
   static const String assetsMyCourses = 'assets/myCourses.svg';
   static const String assetsMessage = 'assets/message.svg';
-  static const String assetsNotification = 'assets/notification.svg';
+  static const String assetsNotification = 'assets/notification_icon.svg';
   static const String assetsProfile = 'assets/profile.svg';
   static const String assetsQuestionMark = 'assets/questionMark.svg';
   static const String assetsGoogleIcon = 'assets/googleIcon.png';
+
+  // Nikhil
+  static const String home = 'assets/images/home.svg';
+  static const String activity = 'assets/images/progress.svg';
+  static const String account = 'assets/images/profile.svg';
 }

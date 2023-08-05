@@ -7,14 +7,11 @@ import '../../Utils/res/Assets.dart';
 import '../../Utils/res/colors.dart';
 
 class BottomNavigation extends StatelessWidget {
-
   const BottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyStatefulWidget(),
-    );
+    return const MyStatefulWidget();
   }
 }
 
@@ -28,10 +25,10 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
 
- final _pageOptions = [
-  const HomeScreen(),
-  const ActivityScreen(),
-  const AccountScreen(),
+  final _pageOptions = [
+    const HomeScreen(),
+    const ActivityScreen(),
+    const AccountScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -44,32 +41,57 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pageOptions[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items:  <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon:  SvgPicture.asset(Assets.assetsHomeIcon, color: AppColors.grey,),
-            label: 'Home',
-            activeIcon: SvgPicture.asset(Assets.assetsHomeIcon,color: AppColors.primaryBackgroundColor),
-
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+          boxShadow: [
+            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
           ),
-          BottomNavigationBarItem(
-            icon:  SvgPicture.asset(Assets.assetsMyCourses),
-            activeIcon: SvgPicture.asset(Assets.assetsMyCourses,color: AppColors.primaryBackgroundColor),
-            label: 'My Course',
+          child: BottomNavigationBar(
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  Assets.home,
+                  color: AppColors.grey,
+                  matchTextDirection: true,
+                ),
+                label: 'Home',
+                activeIcon: SvgPicture.asset(Assets.home,
+                    color: AppColors.primaryBackgroundColor),
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(Assets.activity,
+                    color: AppColors.grey, matchTextDirection: true),
+                activeIcon: SvgPicture.asset(Assets.activity,
+                    color: AppColors.primaryBackgroundColor),
+                label: 'Activity',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(Assets.account,
+                    color: AppColors.grey, matchTextDirection: true),
+                activeIcon: SvgPicture.asset(Assets.account,
+                    color: AppColors.primaryBackgroundColor),
+                label: 'Account',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            enableFeedback: false,
+            showSelectedLabels: true,
+            // Selected labels hide/show
+            showUnselectedLabels: true,
+            // Unselected labels hide/show
+            selectedItemColor: AppColors.primaryBackgroundColor,
+            onTap: _onItemTapped,
+            type: BottomNavigationBarType.fixed, // Icons and labels animation
           ),
-          BottomNavigationBarItem(
-            icon:  SvgPicture.asset(Assets.assetsMessage),
-            activeIcon: SvgPicture.asset(Assets.assetsMessage,color: AppColors.primaryBackgroundColor),
-            label: 'Message',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        enableFeedback: false,
-        showSelectedLabels: true, // Selected labels hide/show
-        showUnselectedLabels: true, // Unselected labels hide/show
-        selectedItemColor: AppColors.primaryTextColor,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed, // Icons and labels animation  
+        ),
       ),
     );
   }

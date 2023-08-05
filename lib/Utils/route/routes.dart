@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/view/bottomNavigation/bottomNavigations.dart';
 import 'package:flygrs/view/preAuth/getStartedScreenView.dart';
 import 'package:flygrs/view/preAuth/signupLoginView.dart';
 import 'package:flygrs/view/preAuth/splashView.dart';
@@ -23,6 +24,10 @@ class Routes {
       case RouteName.signupLogin:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SignupLoginView());
+
+      case RouteName.bottomNavigation:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const BottomNavigation());
 
       //Default Route
       default:
