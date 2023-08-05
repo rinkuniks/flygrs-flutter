@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/view/preAuth/getStartedScreenView.dart';
+import 'package:flygrs/view/preAuth/signupLoginView.dart';
 import 'package:flygrs/view/preAuth/splashView.dart';
 
 class Routes {
@@ -18,9 +19,10 @@ class Routes {
       // case RoutesName.login:
       //   return MaterialPageRoute(
       //       builder: (BuildContext context) => const LoginView());
-      // case RoutesName.signUp:
-      //   return MaterialPageRoute(
-      //       builder: (BuildContext context) => const SignUpView());
+
+      case RouteName.signupLogin:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SignupLoginView());
 
       //Default Route
       default:

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({super.key});
@@ -64,10 +65,16 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                           ),
                           Row(
                             children: [
-                              const Text(
-                                "Skip",
-                                style: TextStyle(
-                                    fontSize: 12, color: AppColors.white),
+                              InkWell(
+                                child: const Text(
+                                  "Skip",
+                                  style: TextStyle(
+                                      fontSize: 12, color: AppColors.white),
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, RouteName.signupLogin);
+                                },
                               ),
                               const SizedBox(
                                 width: 5,
