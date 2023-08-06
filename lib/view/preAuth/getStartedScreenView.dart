@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/Utils/util.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({super.key});
@@ -173,7 +174,10 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                                   color: AppColors.white))),
                       onTap: () {
                         if (kDebugMode) {
-                         Navigator.pushNamed(context, RouteName.profile);
+                          //  Navigator.pushNamed(context, RouteName.profile);
+                          Utils.snackBar("Clicked", context);
+                          Navigator.pushNamed(
+                              context, RouteName.bottomNavigation);
                         }
                       }),
                 ),
@@ -189,48 +193,50 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
 class Pages extends StatelessWidget {
   final title;
   final subTitle;
-
   // final color;
   final imgPath;
 
   const Pages({super.key, this.title, this.subTitle, this.imgPath});
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.all(24),
-            color: AppColors.primaryBackgroundColor,
-            child: Image.asset(
-              imgPath,
-              fit: BoxFit.fill,
-            ),
+    return Column(children: <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.only(left: 24),
+        color: AppColors.primaryBackgroundColor,
+        child: Image.asset(
+          imgPath,
+          // fit: BoxFit.fill,
+        ),
+      ),
+      Expanded(
+        child: Container(
+          alignment: Alignment.center,
+          color: AppColors.white,
+          padding: const EdgeInsets.only(left: 24, right: 24, top: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    color: AppColors.black),
+              ),
+              Text(
+                subTitle,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.black),
+              ),
+            ],
           ),
-          Container(
-            color: Colors.white,
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  textAlign: TextAlign.left,
-                  style: const TextStyle(fontSize: 36,
-                  fontWeight: FontWeight.w900,
-                  color: AppColors.black),
-                ),
-                Text(
-                  subTitle,
-                  textAlign: TextAlign.left,
-                  style: const TextStyle(fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black),
-                ),
-              ],
-            ),
-          ),
-        ]);
+        ),
+      ),
+    ]);
   }
 }

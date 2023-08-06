@@ -10,6 +10,7 @@ class RouteName {
   static const String signupLogin = 'signupLogin';
 
   // home screen routes name
+  static const String bottomNavigation = 'bottomNavigation.dart';
   static const String home = 'home_screen.dart';
   static const String notifications = "notifications";
   static const String profile = "profile";
