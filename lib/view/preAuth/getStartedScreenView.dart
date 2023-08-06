@@ -173,7 +173,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                                   color: AppColors.white))),
                       onTap: () {
                         if (kDebugMode) {
-                          print("you clicked me");
+                         Navigator.pushNamed(context, RouteName.profile);
                         }
                       }),
                 ),

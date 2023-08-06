@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/res/components/AppTextField.dart';
 
 class SignupLoginView extends StatefulWidget {
   const SignupLoginView({super.key});
@@ -246,8 +248,17 @@ class _SignupLoginViewState extends State<SignupLoginView> {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField("info@demouri.com", false, true),
-          buildTextField("**********", true, false),
+          AppTextField(
+            hintText: "info@demouri.com",
+            isPassword: false,
+            keyboardType: TextInputType.emailAddress,
+          ),
+          AppTextField(
+            hintText: "**********",
+            isPassword: true,
+            obSecure: true,
+            keyboardType: TextInputType.text,
+          ),
           Container(
             width: 200,
             child: Row(
@@ -256,7 +267,9 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, RouteName.takeMeHome);
+                      },
                       child: Text("Remember Me",
                           style: TextStyle(
                               fontSize: 10,
@@ -291,11 +304,33 @@ class _SignupLoginViewState extends State<SignupLoginView> {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField("Name", false, false),
-          buildTextField("Email", false, true),
-          buildTextField("Password", true, false),
-          buildTextField("Confirm Passwrod", true, false),
-          buildTextField("Phone No.", false, true),
+          AppTextField(
+            hintText: "Name",
+            isPassword: false,
+            keyboardType: TextInputType.text,
+          ),
+          AppTextField(
+            hintText: "Email",
+            isPassword: false,
+            keyboardType: TextInputType.emailAddress,
+          ),
+          AppTextField(
+            hintText: "Password",
+            isPassword: true,
+            obSecure: true,
+            keyboardType: TextInputType.text,
+          ),
+          AppTextField(
+            hintText: "Confirm Passwrod",
+            isPassword: false,
+            obSecure: true,
+            keyboardType: TextInputType.text,
+          ),
+          AppTextField(
+            hintText: "Phone No.",
+            isPassword: false,
+            keyboardType: TextInputType.text,
+          ),
         ],
       ),
     );
@@ -365,50 +400,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                     ),
                   ))
               : Center(),
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextField(String hintText, bool isPassword, bool isEmail) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: TextField(
-        obscureText: isPassword,
-        keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
-        decoration: InputDecoration(
-          // prefixIcon: Icon(
-          //   icon,
-          //   color: Colors.grey,
-          // ),
-          suffixIcon: isPassword == false
-              ? null
-              : GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      obSecure = !obSecure!;
-                    });
-                  },
-                  child: Icon(
-                    obSecure != null && obSecure!
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                    color: AppColors.grey,
-                  ),
-                ),
-          fillColor: AppColors.shinnySilver,
-          filled: true,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.shinnySilver),
-            borderRadius: BorderRadius.all(Radius.circular(14.0)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.all(Radius.circular(14.0)),
-          ),
-          contentPadding: EdgeInsets.all(10),
-          hintText: hintText,
-          hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
         ),
       ),
     );

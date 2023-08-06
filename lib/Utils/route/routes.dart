@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/view/account/account.dart';
+import 'package:flygrs/view/home/takeMe_Home.dart';
 import 'package:flygrs/view/preAuth/getStartedScreenView.dart';
 import 'package:flygrs/view/preAuth/signupLoginView.dart';
 import 'package:flygrs/view/preAuth/splashView.dart';
@@ -23,6 +25,14 @@ class Routes {
       case RouteName.signupLogin:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SignupLoginView());
+
+      case RouteName.takeMeHome:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const TakeMeHomeView());
+
+      case RouteName.profile:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const AccountScreen());
 
       //Default Route
       default:
