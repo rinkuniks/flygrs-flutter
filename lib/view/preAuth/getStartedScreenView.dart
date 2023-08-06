@@ -174,10 +174,15 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                                   color: AppColors.white))),
                       onTap: () {
                         if (kDebugMode) {
+<<<<<<< HEAD
                           Utils.snackBar("Clicked", context);
                           Navigator.pushNamed(
                               context, RouteName.signupLogin);
 
+=======
+                          // Utils.snackBar("Clicked", context);
+                          Navigator.pushNamed(context, RouteName.bottomNavigation);
+>>>>>>> ab370d5f53416fb3e138475928ebdd7214432de3
                         }
                       }),
                 ),

@@ -40,6 +40,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: _pageOptions[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
