@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/view/account/account.dart';
+import 'package:flygrs/view/home/takeMe_Home.dart';
 import 'package:flygrs/view/bottomNavigation/bottomNavigations.dart';
 import 'package:flygrs/view/preAuth/getStartedScreenView.dart';
 import 'package:flygrs/view/preAuth/signupLoginView.dart';
@@ -25,6 +27,13 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => const SignupLoginView());
 
+      case RouteName.takeMeHome:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const TakeMeHomeView());
+
+      case RouteName.profile:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const AccountScreen());
       case RouteName.bottomNavigation:
         return MaterialPageRoute(
             builder: (BuildContext context) => const BottomNavigation());
@@ -36,7 +45,8 @@ class Routes {
                   body: Center(
                     child: Text('No Route found...'),
                   ),
-                ));
+                )
+        );
     }
   }
 }

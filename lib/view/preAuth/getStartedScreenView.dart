@@ -197,43 +197,44 @@ class Pages extends StatelessWidget {
   const Pages({super.key, this.title, this.subTitle, this.imgPath});
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.only(left: 24),
-            color: AppColors.primaryBackgroundColor,
-            child: Image.asset(
-              imgPath,
-              // fit: BoxFit.fill,
-            ),
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              color: AppColors.white,
-              padding: const EdgeInsets.only(left: 24, right: 24, top: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(fontSize: 24,
+    return Column(children: <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.only(left: 24),
+        color: AppColors.primaryBackgroundColor,
+        child: Image.asset(
+          imgPath,
+          // fit: BoxFit.fill,
+        ),
+      ),
+      Expanded(
+        child: Container(
+          alignment: Alignment.center,
+          color: AppColors.white,
+          padding: const EdgeInsets.only(left: 24, right: 24, top: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                    fontSize: 24,
                     fontWeight: FontWeight.w900,
                     color: AppColors.black),
-                  ),
-                  Text(
-                    subTitle,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.black),
-                  ),
-                ],
               ),
-            ),
+              Text(
+                subTitle,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.black),
+              ),
+            ],
           ),
-        ]);
+        ),
+      ),
+    ]);
   }
 }

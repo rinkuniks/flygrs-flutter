@@ -24,6 +24,7 @@ class AppColors {
   static const Color primaryButtonBackgroundColor = Color(0xFF3433F2);
   static const Color secondaryButtonBackgroundColor = Color(0xff000000);
   static const Color tertiaryButtonBackgroundColor = Colors.green;
+  static const Color textFieldBackgroundColor = Color(0xffE9E7E7);
 
   //Common Colors
   static const Color black = Color(0xff000000);
