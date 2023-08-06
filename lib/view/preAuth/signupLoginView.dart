@@ -358,49 +358,55 @@ class _SignupLoginViewState extends State<SignupLoginView> {
       right: 0,
       left: 0,
       child: Center(
-        child: Container(
-          height: 48,
-          width: 222,
-          // padding: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                if (showShadow)
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.3),
-                    spreadRadius: 1.5,
-                    blurRadius: 10,
-                  )
-              ]),
-          child: !showShadow
-              ? Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        AppColors.gradient1,
-                        AppColors.gradient2,
-                        AppColors.gradient3,
-                      ], stops: [
-                        0.0,
-                        0.5,
-                        0.9
-                      ]),
-                      borderRadius: BorderRadius.circular(3),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(.3),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(0, 1))
-                      ]),
-                  child: Center(
-                    child: Text(
-                      !isSignupScreen ? 'Sign Up' : 'Sign In',
-                      style: TextStyle(color: AppColors.white, fontSize: 16),
-                    ),
-                  ))
-              : Center(),
-        ),
+        child: InkWell(
+          onTap: (){
+            Navigator.pushNamed(
+                context, RouteName.bottomNavigation);
+          },
+          child: Container(
+            height: 48,
+            width: 222,
+            // padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  if (showShadow)
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.3),
+                      spreadRadius: 1.5,
+                      blurRadius: 10,
+                    )
+                ]),
+            child: !showShadow
+                ? Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      AppColors.gradient1,
+                      AppColors.gradient2,
+                      AppColors.gradient3,
+                    ], stops: [
+                      0.0,
+                      0.5,
+                      0.9
+                    ]),
+                    borderRadius: BorderRadius.circular(3),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(.3),
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                          offset: Offset(0, 1))
+                    ]),
+                child: Center(
+                  child: Text(
+                    !isSignupScreen ? 'Sign Up' : 'Sign In',
+                    style: TextStyle(color: AppColors.white, fontSize: 16),
+                  ),
+                ))
+                : Center(),
+          ),
+        )
       ),
     );
   }

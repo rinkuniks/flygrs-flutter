@@ -15,4 +15,6 @@ class RouteName {
   static const String notifications = "notifications";
   static const String profile = "profile";
   static const String takeMeHome = "takeMeHome";
+  static const String editProfile = "editProfile";
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/NotificationHeader.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -10,6 +11,8 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  final List<String> entries = <String>['Payment Method', 'History', 'Invite Friends', 'Settings', 'Logout'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,11 +98,16 @@ class _AccountScreenState extends State<AccountScreen> {
                                   )
                                 ],
                               ),
-                              Image.asset(
-                                'assets/images/next.png',
-                                height: 19,
-                                width: 19,
-                              ),
+                              InkWell(
+                                onTap: () {
+                                 Navigator.pushNamed(context, RouteName.editProfile);
+                                },
+                                child: Image.asset(
+                                  'assets/images/next.png',
+                                  height: 19,
+                                  width: 19,
+                                ),
+                              )
                             ],
                           ),
                         )
@@ -109,6 +117,50 @@ class _AccountScreenState extends State<AccountScreen> {
                 ],
               ),
             )
+          ),
+          Positioned(
+            top: (MediaQuery.of(context).size.height/2 - 120) ,
+              right: 0,
+              left: 0,
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height - (MediaQuery.of(context).size.height/2 - 120),
+                    child: ListView.builder(
+                        padding: const EdgeInsets.only(top: 47, left: 28, right: 24),
+                        itemCount: entries.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            height: 51,
+                            margin: EdgeInsets.only(bottom: 15),
+                            child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/profile.png',
+                                    height: 51,
+                                    width: 51,
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      '${entries[index]}',
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColors.black),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            // Center(child: Text('Entry ${entries[index]}')),
+                          );
+                        }
+                    ),
+                  )
+                ],
+              )
           )
         ],
       ),

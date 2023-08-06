@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/view/account/account.dart';
+import 'package:flygrs/view/account/editProfile.dart';
 import 'package:flygrs/view/home/takeMe_Home.dart';
 import 'package:flygrs/view/bottomNavigation/bottomNavigations.dart';
 import 'package:flygrs/view/preAuth/getStartedScreenView.dart';
@@ -34,6 +35,11 @@ class Routes {
       case RouteName.profile:
         return MaterialPageRoute(
             builder: (BuildContext context) => const AccountScreen());
+
+      case RouteName.editProfile:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const EditProfileView());
+
       case RouteName.bottomNavigation:
         return MaterialPageRoute(
             builder: (BuildContext context) => const BottomNavigation());

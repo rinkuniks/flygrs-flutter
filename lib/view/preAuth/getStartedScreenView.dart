@@ -74,7 +74,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                                 ),
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, RouteName.signupLogin);
+                                      context, RouteName.bottomNavigation);
                                 },
                               ),
                               const SizedBox(
@@ -174,10 +174,10 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                                   color: AppColors.white))),
                       onTap: () {
                         if (kDebugMode) {
-                          //  Navigator.pushNamed(context, RouteName.profile);
                           Utils.snackBar("Clicked", context);
                           Navigator.pushNamed(
-                              context, RouteName.bottomNavigation);
+                              context, RouteName.signupLogin);
+
                         }
                       }),
                 ),
