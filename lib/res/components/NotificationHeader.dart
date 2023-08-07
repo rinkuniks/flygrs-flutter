@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
 
 class NotificationHeader extends StatefulWidget {
   const NotificationHeader({super.key});
@@ -15,11 +16,16 @@ class _NotificationHeaderState extends State<NotificationHeader> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Image.asset(
-            'assets/images/notification.png',
-            height: 23,
-            width: 23,
-          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, RouteName.notification);
+            },
+            child: Image.asset(
+              'assets/images/notification.png',
+              height: 23,
+              width: 23,
+            ),
+          )
         ],
       ),
     );

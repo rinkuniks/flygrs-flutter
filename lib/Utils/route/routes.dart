@@ -4,6 +4,7 @@ import 'package:flygrs/view/account/account.dart';
 import 'package:flygrs/view/account/editProfile.dart';
 import 'package:flygrs/view/home/takeMe_Home.dart';
 import 'package:flygrs/view/bottomNavigation/bottomNavigations.dart';
+import 'package:flygrs/view/notification/notificationView.dart';
 import 'package:flygrs/view/preAuth/getStartedScreenView.dart';
 import 'package:flygrs/view/preAuth/signupLoginView.dart';
 import 'package:flygrs/view/preAuth/splashView.dart';
@@ -44,7 +45,11 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => const BottomNavigation());
 
-      //Default Route
+      case RouteName.notification:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const NotificationView());
+
+    //Default Route
       default:
         return MaterialPageRoute(
             builder: (BuildContext context) => const Scaffold(
