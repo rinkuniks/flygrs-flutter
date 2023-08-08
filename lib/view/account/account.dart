@@ -24,21 +24,21 @@ class _AccountScreenState extends State<AccountScreen> {
               left: 0,
               right: 0,
               child: Container(
-                padding: EdgeInsets.only(top: 40),
+                padding: const EdgeInsets.only(top: 40),
                 height: MediaQuery.of(context).size.height / 2-120,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(27), bottomLeft: Radius.circular(27)),
                   color: AppColors.primaryBackgroundColor,
                 ),
               child: Column(
                 children: [
-                  NotificationHeader(),
+                  const NotificationHeader(),
                   Padding(
-                    padding: const EdgeInsets.all(31.0),
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 20, left: 30,right: 30),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Account',
                           style: TextStyle(
                               fontFamily: 'Poppins',
@@ -62,7 +62,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                     padding: const EdgeInsets.all(13.0),
                                     child: Column(
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Amy',
                                           style: TextStyle(
                                               fontFamily: 'Poppins',
@@ -70,7 +70,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                               fontWeight: FontWeight.w600,
                                               color: AppColors.white),
                                         ),
-                                        SizedBox(height: 2,),
+                                        const SizedBox(height: 2,),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
@@ -80,8 +80,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                               width: 19,
                                             ),
 
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 3.0),
+                                            const Padding(
+                                              padding: EdgeInsets.only(left: 3.0),
                                               child: Text(
                                                 '4.5',
                                                 style: TextStyle(
@@ -132,7 +132,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
                             height: 51,
-                            margin: EdgeInsets.only(bottom: 15),
+                            margin: const EdgeInsets.only(bottom: 15),
                             child: Row(
                                 children: [
                                   Image.asset(
@@ -145,7 +145,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
                                       '${entries[index]}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontFamily: 'Poppins',
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,

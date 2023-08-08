@@ -176,8 +176,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                         if (kDebugMode) {
                           // Utils.snackBar("Clicked", context);
                           // Navigator.pushNamed(context, RouteName.signupLogin);
-                          // Navigator.pushNamed(context, RouteName.bottomNavigation);
-                          Navigator.pushNamed(context, RouteName.takeMeHome);
+                          Navigator.pushNamed(context, RouteName.bottomNavigation);
+                          // Navigator.pushNamed(context, RouteName.takeMeHome);
                         }
                       }),
                 ),
@@ -190,7 +190,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   }
 }
 
-class Pages extends StatelessWidget {
+class Pages extends StatelessWidget{
   final title;
   final subTitle;
   // final color;
