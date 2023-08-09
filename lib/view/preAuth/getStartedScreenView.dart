@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
-import 'package:flygrs/Utils/util.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({super.key});
@@ -175,10 +174,11 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       onTap: () {
                         if (kDebugMode) {
                           // Utils.snackBar("Clicked", context);
-                          Navigator.pushNamed(context, RouteName.signupLogin);
+                          // Navigator.pushNamed(context, RouteName.signupLogin);
                           // Navigator.pushNamed(context, RouteName.bottomNavigation);
                           // Navigator.pushNamed(context, RouteName.signupLogin);
                           // Navigator.pushNamed(context, RouteName.bottomNavigation);
+                          Navigator.pushNamed(context, RouteName.bookingScreen);
                           // Navigator.pushNamed(context, RouteName.takeMeHome);
                         }
                       }),

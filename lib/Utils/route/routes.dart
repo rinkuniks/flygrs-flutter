@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/view/account/account.dart';
 import 'package:flygrs/view/account/editProfile.dart';
+import 'package:flygrs/view/booking/booking_screen.dart';
 import 'package:flygrs/view/home/takeMe_Home.dart';
 import 'package:flygrs/view/bottomNavigation/bottomNavigations.dart';
 import 'package:flygrs/view/notification/notificationView.dart';
@@ -50,6 +51,10 @@ class Routes {
       case RouteName.notification:
         return MaterialPageRoute(
             builder: (BuildContext context) => const NotificationView());
+
+      case RouteName.bookingScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const BookingScreen());
 
       case RouteName.rating:
         return MaterialPageRoute(
