@@ -173,8 +173,10 @@ class _TakeMeHomeViewState extends State<TakeMeHomeView> {
                           height: 30,
                         ),
                         AppGradientButton(
-                          height: 50,
+                          height: 51,
                           title: "Search",
+                          bottomLeftCorner: 20,
+                          bottomRightCorner: 20,
                         )
                       ],
                     ),

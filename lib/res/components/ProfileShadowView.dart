@@ -16,7 +16,7 @@ class _ProfileShadowViewState extends State<ProfileShadowView> {
 
   @override
   Widget build(BuildContext context) {
-    return   Container(
+    return Container(
       height: 58,
       decoration: BoxDecoration(
           color: AppColors.white,

@@ -338,7 +338,9 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   TextButton buildTextButton(Image iconImg, title, Color backgroundColor) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, RouteName.rating);
+      },
       child: Row(
         children: [
           ClipRRect(child: iconImg),

@@ -9,6 +9,7 @@ import 'package:flygrs/view/notification/notificationView.dart';
 import 'package:flygrs/view/preAuth/getStartedScreenView.dart';
 import 'package:flygrs/view/preAuth/signupLoginView.dart';
 import 'package:flygrs/view/preAuth/splashView.dart';
+import 'package:flygrs/view/rating/ratingView.dart';
 
 class Routes {
   static MaterialPageRoute generateRoute(RouteSettings settings) {
@@ -53,6 +54,10 @@ class Routes {
       case RouteName.bookingScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => const BookingScreen());
+
+      case RouteName.rating:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const RatingView());
 
     //Default Route
       default:
