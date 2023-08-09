@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../Utils/res/colors.dart';
@@ -10,6 +11,46 @@ class BookingScreen extends StatefulWidget {
 }
 
 class _BookingScreenState extends State<BookingScreen> {
+  final PageController _pageController = PageController(initialPage: 0);
+  int pageIndex = 0;
+
+  List<Widget> _list(BuildContext context) {
+    return [
+      const Center(
+          child: Pages(
+              titleTiming: "8:15pm",
+              timeAway: "4 min away",
+              counterTimer: "0",
+              image: "assets/images/chau_image.png",
+              popularity: "Most Popular",
+              amount: "10")),
+      const Center(
+          child: Pages(
+              titleTiming: "8:15pm",
+              timeAway: "4 min away",
+              counterTimer: "0",
+              image: "assets/images/chau_image.png",
+              popularity: "Most Popular",
+              amount: "10")),
+      const Center(
+          child: Pages(
+              titleTiming: "8:15pm",
+              timeAway: "4 min away",
+              counterTimer: "0",
+              image: "assets/images/chau_image.png",
+              popularity: "Most Popular",
+              amount: "10")),
+      const Center(
+          child: Pages(
+              titleTiming: "8:15pm",
+              timeAway: "4 min away",
+              counterTimer: "0",
+              image: "assets/images/chau_image.png",
+              popularity: "Most Popular",
+              amount: "10")),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,7 +76,8 @@ class _BookingScreenState extends State<BookingScreen> {
               children: [
                 //Details to select
                 Container(
-                  padding: const EdgeInsets.all(24),
+                  height: 320,
+                  padding: const EdgeInsets.all(15),
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       color: AppColors.primaryBackgroundColor,
@@ -60,21 +102,32 @@ class _BookingScreenState extends State<BookingScreen> {
                         thickness: 1,
                         color: AppColors.white,
                       ),
-                      SvgPicture.asset("assets/images/list_driver.svg"),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 220,
+                        child: ListView.builder(
+                          controller: _pageController,
+                          scrollDirection: Axis.vertical,
+                          reverse: false,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: _list(context).length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                              onTap: (){
+                                if (kDebugMode) {
+                                  print("======$index");
+                                }
+                              },
+                                child: _list(context).elementAt(index));
+                          },
+                        ),
                       ),
-                      SvgPicture.asset("assets/images/list_driver.svg"),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SvgPicture.asset("assets/images/list_driver.svg"),
                     ],
                   ),
                 ),
                 //Card Selection
                 Container(
-                  padding: const EdgeInsets.only(right: 24,left: 24,top: 10,bottom: 10),
+                  padding: const EdgeInsets.only(
+                      right: 24, left: 24, top: 10, bottom: 10),
                   color: AppColors.white,
                   child: Column(
                     children: [
@@ -120,6 +173,129 @@ class _BookingScreenState extends State<BookingScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Pages extends StatelessWidget {
+  final titleTiming;
+  final timeAway;
+  final counterTimer;
+  final image;
+  final popularity;
+  final amount;
+
+  const Pages(
+      {super.key,
+      this.titleTiming,
+      this.timeAway,
+      this.counterTimer,
+      this.image,
+      this.popularity,
+      this.amount});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 10, bottom: 10),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              children: [
+                Image.asset(image),
+                Container(
+                  margin: const EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //time section
+                      Row(
+                        children: [
+                          Text(
+                            titleTiming,
+                            style: const TextStyle(
+                                color: AppColors.white, fontSize: 12),
+                          ),
+                          const Text(
+                            " . ",
+                            style:
+                                TextStyle(color: AppColors.white, fontSize: 16),
+                          ),
+                          Text(
+                            timeAway,
+                            style: const TextStyle(
+                                color: AppColors.white, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      //Counter Section
+                      SizedBox(
+                        width: 100,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(2),
+                              decoration: const BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(4))),
+                              child: const Text(
+                                " + ",
+                                style: TextStyle(
+                                    color: AppColors.primaryBackgroundColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            const Text(
+                              "0",
+                              style: TextStyle(
+                                  color: AppColors.white, fontSize: 16),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(2),
+                              decoration: const BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(4))),
+                              child: const Text(
+                                " - ",
+                                style: TextStyle(
+                                    color: AppColors.primaryBackgroundColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            const Text(
+                              "hrs",
+                              style: TextStyle(
+                                  color: AppColors.white, fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      //popularity
+                      Text(popularity,
+                          style: const TextStyle(
+                              color: AppColors.white, fontSize: 12)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              '\$ ' + amount,
+              style: const TextStyle(color: AppColors.white, fontSize: 16),
+            ),
+          ]),
     );
   }
 }
