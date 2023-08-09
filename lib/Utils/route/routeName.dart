@@ -17,5 +17,6 @@ class RouteName {
   static const String takeMeHome = "takeMeHome";
   static const String editProfile = "editProfile";
   static const String notification = "notification";
+  static const String rating  = "rating";
 
 }

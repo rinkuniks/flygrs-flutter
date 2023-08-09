@@ -7,11 +7,19 @@ class AppGradientButton extends StatefulWidget {
     this.title,
     this.width,
     this.height,
+    this.topLeftCorner,
+    this.topRightCorner,
+    this.bottomLeftCorner,
+    this.bottomRightCorner
   });
 
   final String? title;
   final double? width;
   final double? height;
+  final double? topLeftCorner;
+  final double? topRightCorner;
+  final double? bottomLeftCorner;
+  final double? bottomRightCorner;
 
   @override
   _AppGradientButtonState createState() => _AppGradientButtonState();
@@ -29,7 +37,11 @@ class _AppGradientButtonState extends State<AppGradientButton> {
               alignment: Alignment.center,
               decoration:  BoxDecoration(
                 color: Colors.black,
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(widget.topLeftCorner ?? 0),
+                    topRight: Radius.circular(widget.topRightCorner ?? 0),
+                    bottomLeft: Radius.circular(widget.bottomLeftCorner ?? 0),
+                    bottomRight: Radius.circular(widget.bottomRightCorner ?? 0)),
                 image: DecorationImage(
                     image: AssetImage("assets/images/btnBg.png"),
                     fit: BoxFit.cover),

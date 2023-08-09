@@ -1,7 +1,10 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -70,9 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: AppColors.white,
                       child: Column(
                         children: [
-                          homeScreenComponent("Park My Car", "assets/images/car_park.svg"),
-                          homeScreenTwoComponent("Take Me Home","assets/images/takeMeHome.svg"),
-                          homeScreenTwoComponent("Chauffeur Me","assets/images/chauffeur.svg")
+                          homeScreenComponent(context, "Park My Car", "assets/images/car_park.svg"),
+                          homeScreenTwoComponent(context, "Take Me Home","assets/images/takeMeHome.svg"),
+                          homeScreenTwoComponent(context, "Chauffeur Me","assets/images/chauffeur.svg")
                         ],
                       )),
                 ),
@@ -85,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget homeScreenComponent(String title, String image) {
+Widget homeScreenComponent(BuildContext context, String title, String image) {
   return SingleChildScrollView(
     scrollDirection: Axis.vertical,
     child: Container(
@@ -160,7 +163,7 @@ Widget homeScreenComponent(String title, String image) {
   );
 }
 
-Widget homeScreenTwoComponent(String title, String image) {
+Widget homeScreenTwoComponent(BuildContext context, String title, String image) {
   return Container(
     margin: const EdgeInsets.only(left: 28, right: 28, top: 28),
     padding: const EdgeInsets.all(16),
@@ -207,7 +210,9 @@ Widget homeScreenTwoComponent(String title, String image) {
                             fontWeight: FontWeight.w400,
                             fontFamily: "Poppins",
                             color: AppColors.white))),
-                onPressed: () {}),
+                onPressed: () {
+                   Navigator.pushNamed(context, RouteName.takeMeHome);
+                }),
           ],
         ),
       ],

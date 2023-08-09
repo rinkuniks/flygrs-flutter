@@ -175,9 +175,9 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       onTap: () {
                         if (kDebugMode) {
                           // Utils.snackBar("Clicked", context);
-                          // Navigator.pushNamed(context, RouteName.signupLogin);
+                          Navigator.pushNamed(context, RouteName.signupLogin);
                           // Navigator.pushNamed(context, RouteName.bottomNavigation);
-                          Navigator.pushNamed(context, RouteName.takeMeHome);
+                          // Navigator.pushNamed(context, RouteName.takeMeHome);
                         }
                       }),
                 ),
