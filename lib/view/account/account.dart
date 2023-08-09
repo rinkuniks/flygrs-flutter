@@ -11,7 +11,13 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  final List<String> entries = <String>['Payment Method', 'History', 'Invite Friends', 'Settings', 'Logout'];
+  final List<Map<String, String>> entries = <Map<String, String>>[
+    {'title': 'Payment Method', 'image': 'assets/images/payment.png'},
+    {'title': 'History', 'image': 'assets/images/history.png'},
+    {'title':'Invite Friends', 'image': 'assets/images/invite.png'},
+    {'title': 'Settings', 'image': 'assets/images/setting.png'},
+    {'title': 'Logout', 'image': 'assets/images/logout.png'}
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +142,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             child: Row(
                                 children: [
                                   Image.asset(
-                                    'assets/images/profile.png',
+                                    '${entries[index]['image']}',
                                     height: 51,
                                     width: 51,
                                   ),
@@ -144,7 +150,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      '${entries[index]}',
+                                      '${entries[index]['title']}',
                                       style: const TextStyle(
                                           fontFamily: 'Poppins',
                                           fontSize: 16,
