@@ -18,6 +18,7 @@ class RouteName {
   static const String editProfile = "editProfile";
   static const String notification = "notification";
   static const String rating  = "rating";
+  static const String rideCompleted = "rideCompleted";
 
   //Other Screens
   static const String bookingScreen = "booking_screen";

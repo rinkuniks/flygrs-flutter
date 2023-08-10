@@ -10,7 +10,8 @@ class AppGradientButton extends StatefulWidget {
     this.topLeftCorner,
     this.topRightCorner,
     this.bottomLeftCorner,
-    this.bottomRightCorner
+    this.bottomRightCorner,
+    required this.onTap,
   });
 
   final String? title;
@@ -20,12 +21,14 @@ class AppGradientButton extends StatefulWidget {
   final double? topRightCorner;
   final double? bottomLeftCorner;
   final double? bottomRightCorner;
+  final Function()? onTap;
 
   @override
   _AppGradientButtonState createState() => _AppGradientButtonState();
 }
 
 class _AppGradientButtonState extends State<AppGradientButton> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,7 +55,8 @@ class _AppGradientButtonState extends State<AppGradientButton> {
                       fontWeight: FontWeight.w400,
                       fontFamily: "Poppins",
                       color: AppColors.white))),
-          onTap: () {}),
+              onTap: widget.onTap
+          ),
     );
   }
 }

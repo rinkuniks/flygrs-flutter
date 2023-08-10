@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/AppGradientButton.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
 import 'package:flygrs/res/components/NotificationHeader.dart';
@@ -173,6 +174,9 @@ class _TakeMeHomeViewState extends State<TakeMeHomeView> {
                           height: 30,
                         ),
                         AppGradientButton(
+                          onTap: () {
+                            Navigator.pushNamed(context, RouteName.bookingScreen);
+                          },
                           height: 51,
                           title: "Search",
                           bottomLeftCorner: 20,
