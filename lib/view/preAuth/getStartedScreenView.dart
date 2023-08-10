@@ -176,10 +176,9 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                           // Utils.snackBar("Clicked", context);
                           Navigator.pushNamed(context, RouteName.signupLogin);
                           // Navigator.pushNamed(context, RouteName.bottomNavigation);
-                          // Navigator.pushNamed(context, RouteName.signupLogin);
+                          Navigator.pushNamed(context, RouteName.signupLogin);
                           // Navigator.pushNamed(context, RouteName.bottomNavigation);
                           // Navigator.pushNamed(context, RouteName.bookingScreen);
-                          Navigator.pushNamed(context, RouteName.onGoingScreen);
                           // Navigator.pushNamed(context, RouteName.takeMeHome);
                         }
                       }

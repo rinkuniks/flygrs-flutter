@@ -56,124 +56,116 @@ class _BookingScreenState extends State<BookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
+    return Scaffold(
+      body: Stack(
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+              child: Image.asset("assets/images/mapOne.png")),
+          Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-                child: Image.asset("assets/images/mapOne.png")),
+            //Map
+             HeaderBack( whichBack: 'blueBack',),
+            //Bottom Selection
             Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //Map
-               HeaderBack(isSafeArea: true, whichBack: 'blueBack',),
-              //Bottom Selection
-              Column(
-                children: [
-                  //Details to select
-                  Container(
-                    height: 320,
-                    padding: const EdgeInsets.all(15),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                        color: AppColors.primaryBackgroundColor,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        )),
-                    child: Column(
-                      children: [
-                        SvgPicture.asset("assets/images/bar.svg"),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Text(
-                          "Chauffeur Me",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 18,
-                              color: AppColors.white),
-                        ),
-                        const Divider(
-                          thickness: 1,
-                          color: AppColors.white,
-                        ),
-                        SizedBox(
-                          height: 220,
-                          child: ListView.builder(
-                            controller: _pageController,
-                            scrollDirection: Axis.vertical,
-                            reverse: false,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: _list(context).length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return InkWell(
-                                onTap: (){
-                                  if (kDebugMode) {
-                                    print("======$index");
-                                  }
-                                },
-                                  child: _list(context).elementAt(index));
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  //Card Selection
-                  Container(
-                    padding: const EdgeInsets.only(
-                        right: 24, left: 24, top: 10, bottom: 10),
-                    color: AppColors.white,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset("assets/images/card_icon.png"),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                const Text("Card"),
-                              ],
-                            ),
-                            SvgPicture.asset("assets/images/card_next.svg")
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            alignment: Alignment.center,
-                            decoration: const BoxDecoration(
-                              color: Colors.black,
-                              image: DecorationImage(
-                                  image: AssetImage("assets/images/btnBg.png"),
-                                  fit: BoxFit.cover),
-                            ),
-                            child: AppGradientButton(
-                              title: 'Book Now',
+              children: [
+                //Details to select
+                Container(
+                  height: 400,
+                  padding: const EdgeInsets.all(15),
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                      color: AppColors.primaryBackgroundColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(56),
+                        topRight: Radius.circular(56),
+                      )),
+                  child: Column(
+                    children: [
+                      SvgPicture.asset("assets/images/bar.svg"),
+                      const SizedBox(
+                        height: 17,
+                      ),
+                      const Text(
+                        "Chauffeur Me",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 24,
+                            fontFamily: 'Poppins',
+                            color: AppColors.white),
+                      ),
+                      const SizedBox(
+                        height: 11,
+                      ),
+                      const Divider(
+                        thickness: 1,
+                        color: AppColors.white,
+                      ),
+                      SizedBox(
+                        height: 290,
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(top: 33),
+                          controller: _pageController,
+                          scrollDirection: Axis.vertical,
+                          reverse: false,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: _list(context).length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
                               onTap: (){
-                                Navigator.pushNamed(context, RouteName.rideCompleted);
+                                if (kDebugMode) {
+                                  print("======$index");
+                                }
                               },
-                              height: 40,
-                            )
+                                child: _list(context).elementAt(index));
+                          },
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-          ]
+                      ),
+                    ],
+                  ),
+                ),
+                //Card Selection
+                Container(
+                  padding: const EdgeInsets.only(
+                      right: 24, left: 24, top: 10, bottom: 40),
+                  color: AppColors.white,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset("assets/images/card_icon.png"),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text("Card"),
+                            ],
+                          ),
+                          SvgPicture.asset("assets/images/card_next.svg")
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      AppGradientButton(
+                          height: 40,
+                          title: 'Book Now',
+                          onTap: () {
+                            Navigator.pushNamed(context, RouteName.onGoingScreen);
+                          }
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
         ),
+        ]
       ),
     );
   }

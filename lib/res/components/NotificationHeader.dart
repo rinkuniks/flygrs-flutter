@@ -19,7 +19,7 @@ class _NotificationHeaderState extends State<NotificationHeader> {
     return  Padding(
       padding: const EdgeInsets.only(top: 40, right: 27, left: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: (widget.isBack ?? false == true) ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
         children: [
           if (widget.isBack == true)
             InkWell(
