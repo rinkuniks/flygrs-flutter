@@ -23,5 +23,5 @@ class RouteName {
   //Other Screens
   static const String bookingScreen = "booking_screen";
   static const String settingScreen = "setting_Screen";
-
+  static const String onGoingScreen = "onGoing_screen";
 }
