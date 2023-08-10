@@ -3,6 +3,7 @@ import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/view/account/account.dart';
 import 'package:flygrs/view/account/editProfile.dart';
 import 'package:flygrs/view/booking/booking_screen.dart';
+import 'package:flygrs/view/booking/onGoing_screen.dart';
 import 'package:flygrs/view/home/takeMe_Home.dart';
 import 'package:flygrs/view/bottomNavigation/bottomNavigations.dart';
 import 'package:flygrs/view/notification/notificationView.dart';
@@ -58,6 +59,10 @@ class Routes {
       case RouteName.rating:
         return MaterialPageRoute(
             builder: (BuildContext context) => const RatingView());
+
+      case RouteName.onGoingScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const OnGoingScreen());
 
     //Default Route
       default:

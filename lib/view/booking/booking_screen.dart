@@ -64,7 +64,7 @@ class _BookingScreenState extends State<BookingScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //Map
+              //backButton
               Container(
                   margin: const EdgeInsets.all(24),
                   height: 20,

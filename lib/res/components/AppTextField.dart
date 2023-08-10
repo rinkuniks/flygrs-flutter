@@ -91,17 +91,17 @@ class _AppTextFieldState extends State<AppTextField> {
                 ),
           fillColor: AppColors.textFieldBackgroundColor,
           filled: true,
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.shinnySilver),
             borderRadius: BorderRadius.all(Radius.circular(7.0)),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
             borderRadius: BorderRadius.all(Radius.circular(7.0)),
           ),
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
           hintText: widget.hintText,
-          hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
+          hintStyle: const TextStyle(fontSize: 14, color: Colors.grey),
         ),
       ),
     );
