@@ -55,7 +55,7 @@ class _AppGradientButtonState extends State<AppGradientButton> {
                       fontWeight: FontWeight.w400,
                       fontFamily: "Poppins",
                       color: AppColors.white))),
-          onTap: widget.onTap
+              onTap: widget.onTap
           ),
     );
   }

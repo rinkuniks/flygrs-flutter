@@ -181,7 +181,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                           // Navigator.pushNamed(context, RouteName.bookingScreen);
                           // Navigator.pushNamed(context, RouteName.takeMeHome);
                         }
-                      }),
+                      }
+                      ),
                 ),
               ),
             ),
