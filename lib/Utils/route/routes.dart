@@ -11,6 +11,7 @@ import 'package:flygrs/view/preAuth/signupLoginView.dart';
 import 'package:flygrs/view/preAuth/splashView.dart';
 import 'package:flygrs/view/rating/ratingView.dart';
 import 'package:flygrs/view/rideCompleted/rideCompletedView.dart';
+import 'package:flygrs/view/setting/settingView.dart';
 
 class Routes {
   static MaterialPageRoute generateRoute(RouteSettings settings) {
@@ -63,6 +64,10 @@ class Routes {
       case RouteName.rideCompleted:
         return MaterialPageRoute(
             builder: (BuildContext context) => const RideCompletedView());
+
+      case RouteName.settingScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SettingView());
 
     //Default Route
       default:

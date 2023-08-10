@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/res/components/AppGradientButton.dart';
 import 'package:flygrs/res/components/HeaderBack.dart';
 import '../../Utils/res/colors.dart';
 
@@ -66,11 +68,7 @@ class _BookingScreenState extends State<BookingScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Map
-              Container(
-                  margin: const EdgeInsets.all(24),
-                  height: 20,
-                  width: 20,
-                  child: Image.asset("assets/images/blueBack.png")),
+               HeaderBack(isSafeArea: true, whichBack: 'blueBack',),
               //Bottom Selection
               Column(
                 children: [
@@ -159,12 +157,14 @@ class _BookingScreenState extends State<BookingScreen> {
                                   image: AssetImage("assets/images/btnBg.png"),
                                   fit: BoxFit.cover),
                             ),
-                            child: const Text("Get Started",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "Poppins",
-                                    color: AppColors.white))),
+                            child: AppGradientButton(
+                              title: 'Book Now',
+                              onTap: (){
+                                Navigator.pushNamed(context, RouteName.rideCompleted);
+                              },
+                              height: 40,
+                            )
+                        ),
                       ],
                     ),
                   )
