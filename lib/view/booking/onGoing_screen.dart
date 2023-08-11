@@ -16,7 +16,6 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Stack(
     children: [
       SizedBox(
@@ -129,7 +128,8 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                     ),
                     Container(
                         margin: const EdgeInsets.only(left: 6),
-                        child: SvgPicture.asset("assets/images/blue_line.svg")),
+                        child: SvgPicture.asset(
+                            "assets/images/blue_line.svg")),
                     Row(
                       children: [
                         SvgPicture.asset("assets/images/blue_location.svg"),
@@ -191,7 +191,7 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                     height: 40,
                     title: 'Book Now',
                     onTap: () {
-                      Navigator.pushNamed(context, RouteName.rideCompleted);
+                      _dialogBuilder(context);
                     }
                 ),
               ],
@@ -201,6 +201,82 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
       )
     ],
       ),
+    );
+  }
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: AppColors.primaryBackgroundColor,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30.0))),
+          title: SvgPicture.asset("assets/images/tick.svg"),
+          content: const SizedBox(
+            height: 70,
+            child: Column(
+              children: [
+                Text('Booking Successful',
+                    style: TextStyle(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20)),
+                SizedBox(height: 10,),
+                Text('Your booking has been confirmed.',
+                    style: TextStyle(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14)),
+                Text('Driver will arrive in 2 Minutes.',
+                    style: TextStyle(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14)),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Column(
+              children: [
+                const Divider(
+                  thickness: 1,
+                  color: AppColors.white,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
+                    ),
+                    Image.asset("assets/images/line.png"),
+                    InkWell(
+                      onTap: () {
+
+                      },
+                      child: Text(
+                        "Done",
+                        style: TextStyle(
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            )
+          ],
+        );
+      },
     );
   }
 }

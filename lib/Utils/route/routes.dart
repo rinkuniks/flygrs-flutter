@@ -66,6 +66,7 @@ class Routes {
       case RouteName.onGoingScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => const OnGoingScreen());
+
       case RouteName.rideCompleted:
         return MaterialPageRoute(
             builder: (BuildContext context) => const RideCompletedView());
