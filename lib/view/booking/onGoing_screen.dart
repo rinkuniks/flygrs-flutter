@@ -16,6 +16,7 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Stack(
     children: [
       SizedBox(
@@ -88,7 +89,12 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                         const SizedBox(
                           width: 5,
                         ),
-                        SvgPicture.asset("assets/images/saftey.svg"),
+                        InkWell(
+                          child: SvgPicture.asset("assets/images/saftey.svg"),
+                          onTap: () {
+                            Navigator.pushNamed(context, RouteName.safetyScreen);
+                          },
+                        )
                       ],
                     )
                   ],
@@ -123,8 +129,7 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                     ),
                     Container(
                         margin: const EdgeInsets.only(left: 6),
-                        child: SvgPicture.asset(
-                            "assets/images/blue_line.svg")),
+                        child: SvgPicture.asset("assets/images/blue_line.svg")),
                     Row(
                       children: [
                         SvgPicture.asset("assets/images/blue_location.svg"),
