@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/AppGradientButton.dart';
 import 'package:flygrs/res/components/HeaderBack.dart';
+
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'package:flutter_share/flutter_share.dart';
+// import 'package:documents_picker/documents_picker.dart';
+
 
 class RideCompletedView extends StatefulWidget {
   const RideCompletedView({super.key});
@@ -11,13 +18,31 @@ class RideCompletedView extends StatefulWidget {
 }
 
 class _RideCompletedViewState extends State<RideCompletedView> {
+
+  Future<void> shareFile() async {
+    // List<dynamic> docs = await DocumentsPicker.pickDocuments;
+    // if (docs == null || docs.isEmpty) return null;
+
+    await FlutterShare.shareFile(
+      title: 'Example share',
+      text: 'Example share text',
+      filePath: "Share File",//docs[0] as String,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondaryBackgroundColor,
       body: Stack(
         children: [
-          HeaderBack(whichBack: 'blueBack', isShare: true,),
+          HeaderBack(
+            whichBack: 'blueBack',
+            isShare: true,
+            onTap: () {
+              shareFile();
+            },
+          ),
           Positioned(
             top: 110,
             right: 0,
@@ -248,8 +273,8 @@ class _RideCompletedViewState extends State<RideCompletedView> {
                             height: 50,
                             title: 'Back to home',
                             onTap: () {
-
-                            }
+                              Navigator.of(context)
+                                  .pushNamedAndRemoveUntil(RouteName.bottomNavigation, (route) => false);                            }
                         ),
                         SizedBox(height: 12,),
                         Container(
@@ -259,16 +284,21 @@ class _RideCompletedViewState extends State<RideCompletedView> {
                             borderRadius: BorderRadius.all(Radius.circular(4)),
                             color: AppColors.shinnySilver,
                           ),
-                          child: Center(
-                            child: Text("Download Bill",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                              )
-                              ,),
-                          ),
+                          child: GestureDetector(
+                            child: Center(
+                              child: Text("Download Bill",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                )
+                                ,),
+                            ),
+                            onTap: () {
+
+                            },
+                          )
                         )
                       ],
                     ),

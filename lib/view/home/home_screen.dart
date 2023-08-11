@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/res/components/NotificationHeader.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,73 +16,69 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.primaryBackgroundColor,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 3,
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        alignment: Alignment.centerRight,
-                        child:
-                            Image.asset("assets/images/notification_icon.png")),
-                    const Text(
-                      "Hello , Amy !",
-                      style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w900,
-                          color: AppColors.white),
-                    ),
-                    const Text(
-                      "Where do you want to go?",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 7,
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(20),
-                      topLeft: Radius.circular(20)),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black38, spreadRadius: 0, blurRadius: 10),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0),
+    return Scaffold(
+      backgroundColor: AppColors.primaryBackgroundColor,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 3,
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  NotificationHeader(),
+                  SizedBox(height: 40,),
+                  const Text(
+                    "Hello , Amy !",
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900,
+                        color: AppColors.white),
                   ),
-                  child: Container(
-                      color: AppColors.white,
-                      child: Column(
-                        children: [
-                          homeScreenComponent(context, "Park My Car", "assets/images/car_park.svg"),
-                          homeScreenTwoComponent(context, "Take Me Home","assets/images/takeMeHome.svg"),
-                          homeScreenTwoComponent(context, "Chauffeur Me","assets/images/chauffeur.svg")
-                        ],
-                      )),
-                ),
+                  const Text(
+                    "Where do you want to go?",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.white),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            flex: 7,
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20)),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
+                child: Container(
+                    color: AppColors.white,
+                    child: Column(
+                      children: [
+                        homeScreenComponent(context, "Park My Car", "assets/images/car_park.svg"),
+                        homeScreenTwoComponent(context, "Take Me Home","assets/images/takeMeHome.svg"),
+                        homeScreenTwoComponent(context, "Chauffeur Me","assets/images/chauffeur.svg")
+                      ],
+                    )),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

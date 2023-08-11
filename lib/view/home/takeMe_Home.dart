@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flygrs/Utils/res/colors.dart';
@@ -69,7 +70,7 @@ class _TakeMeHomeViewState extends State<TakeMeHomeView> {
                     ),
                     child: const Column(
                       children: [
-                        NotificationHeader(),
+                        NotificationHeader(isBack: true),
                         Row(
                           children: [
                             Padding(

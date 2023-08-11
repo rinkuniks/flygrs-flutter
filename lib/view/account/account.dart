@@ -139,7 +139,8 @@ class _AccountScreenState extends State<AccountScreen> {
                           return Container(
                             height: 51,
                             margin: const EdgeInsets.only(bottom: 15),
-                            child: Row(
+                            child: GestureDetector(
+                              child: Row(
                                 children: [
                                   Image.asset(
                                     '${entries[index]['image']}',
@@ -159,7 +160,12 @@ class _AccountScreenState extends State<AccountScreen> {
                                     ),
                                   ),
                                 ],
-                              )
+                              ),
+                              onTap: (){
+                                if(index==3)
+                                  Navigator.pushNamed(context, RouteName.settingScreen);
+                              },
+                            )
                             // Center(child: Text('Entry ${entries[index]}')),
                           );
                         }

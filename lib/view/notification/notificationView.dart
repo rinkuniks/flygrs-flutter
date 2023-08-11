@@ -47,28 +47,49 @@ class _NotificationViewState extends State<NotificationView> {
                 ),
                 itemCount: entries.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: EdgeInsets.only(left: 28, right: 28, top: 19, bottom: 19),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${entries[index]}',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black),
+                  return Dismissible(
+                      key: UniqueKey(),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (_) {
+                       setState(() {
+                         entries.removeAt(index);
+                       });
+                      },
+                      background: Container(
+                        color: AppColors.primaryBackgroundColor,
+                        // margin: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: EdgeInsets.only(right: 20),
+                        alignment: Alignment.centerRight,
+                        child: Text('Remove', style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Poppins',
+                          color: AppColors.white
+                        ),)
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.only(left: 28, right: 28, top: 19, bottom: 19),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${entries[index]}',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.black),
+                            ),
+                            SizedBox(height: 5,),
+                            Text(
+                              'Your booking #1234 has been suc...',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.black),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 5,),
-                        Text(
-                          'Your booking #1234 has been suc...',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.black),
-                        ),
-                      ],
-                    ),
+                      ),
                   );
                 }
             ),
