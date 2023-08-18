@@ -31,7 +31,16 @@ class _RideCompletedViewState extends State<RideCompletedView> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      Navigator.pushNamed(context, RouteName.rating);
+    });
+  }
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: AppColors.secondaryBackgroundColor,
       body: Stack(

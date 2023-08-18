@@ -249,12 +249,15 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          "Cancel",
+                          style: TextStyle(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16),
+                        ),
                       ),
                     ),
                     Image.asset("assets/images/line.png"),
@@ -265,12 +268,15 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                            Navigator.pushNamed(context, RouteName.rideCompleted);
                          });
                       },
-                      child: Text(
-                        "Done",
-                        style: TextStyle(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          "Done",
+                          style: TextStyle(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16),
+                        ),
                       ),
                     )
                   ],

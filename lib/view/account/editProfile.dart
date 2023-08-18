@@ -30,10 +30,20 @@ class _EditProfileViewState extends State<EditProfileView> {
                       fontWeight: FontWeight.w600,
                       color: AppColors.primaryBackgroundColor),
                 ),
-                Image.asset(
-                  'assets/images/profile.png',
-                  height: 79,
-                  width: 79,
+                Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    Image.asset(
+                      'assets/images/profile.png',
+                      height: 79,
+                      width: 79,
+                    ),
+                    Image.asset(
+                      'assets/images/profile.png',
+                      height: 25,
+                      width: 25,
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:flygrs/res/components/AppTextField.dart';
 class ProfileShadowView extends StatefulWidget {
   const ProfileShadowView({
     super.key,
@@ -43,14 +44,36 @@ class _ProfileShadowViewState extends State<ProfileShadowView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  '${widget.title2}',
-                  style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black),
+                SizedBox(
+                  width: 120,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: TextField(
+                      textAlign: TextAlign.right,
+                      decoration: InputDecoration(
+
+                        border: InputBorder.none,
+                        labelText: '${widget.title2}',
+                        hintText: '${widget.title2}',
+                        hintStyle: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.black),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  )
+
                 ),
+                // Text(
+                //   '${widget.title2}',
+                //   style: TextStyle(
+                //       fontFamily: 'Poppins',
+                //       fontSize: 14,
+                //       fontWeight: FontWeight.w400,
+                //       color: AppColors.black),
+                // ),
                 SizedBox(width: 2,),
                 Image.asset(
                   'assets/images/arrow.png',

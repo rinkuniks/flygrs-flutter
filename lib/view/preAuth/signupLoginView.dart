@@ -13,6 +13,7 @@ class SignupLoginView extends StatefulWidget {
 class _SignupLoginViewState extends State<SignupLoginView> {
   bool isSignupScreen = true;
   bool? obSecure;
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -164,10 +165,17 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        'assets/images/checkbox.png',
-                        height: 17,
-                        width: 17,
+                      InkWell(
+                        onTap: (){
+                          setState(() {
+                            isChecked = !isChecked;
+                          });
+                        },
+                        child: Image.asset(
+                          isChecked ? 'assets/images/selectedCheckbox.png' : 'assets/images/checkbox.png',
+                          height: 17,
+                          width: 17,
+                        ),
                       ),
                       SizedBox(
                         width: 10,
@@ -339,7 +347,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
   TextButton buildTextButton(Image iconImg, title, Color backgroundColor) {
     return TextButton(
       onPressed: () {
-        Navigator.pushNamed(context, RouteName.rating);
+
       },
       child: Row(
         children: [
