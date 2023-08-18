@@ -24,13 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             flex: 3,
             child: Container(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.only(left: 24,top: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   NotificationHeader(),
-                  SizedBox(height: 40,),
+                  SizedBox(height: 10,),
                   const Text(
                     "Hello , Amy !",
                     style: TextStyle(
@@ -90,7 +90,14 @@ Widget homeScreenComponent(BuildContext context, String title, String image) {
     child: Container(
       margin: const EdgeInsets.only(left: 28, right: 28, top: 36),
       padding: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 20,
+                spreadRadius: 5
+            ),
+          ],
           color: AppColors.secondaryBackgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(15))),
       child: Row(
@@ -126,8 +133,9 @@ Widget homeScreenComponent(BuildContext context, String title, String image) {
                         image: DecorationImage(
                             image: AssetImage("assets/images/btnBg.png"),
                             fit: BoxFit.cover),
+
                       ),
-                      child: const Text("Hours",
+                      child: const Text("Days",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -144,7 +152,7 @@ Widget homeScreenComponent(BuildContext context, String title, String image) {
                             image: AssetImage("assets/images/btnGreyBg.png"),
                             fit: BoxFit.cover),
                       ),
-                      child: const Text("Days",
+                      child: const Text("Hours",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -163,7 +171,14 @@ Widget homeScreenTwoComponent(BuildContext context, String title, String image) 
   return Container(
     margin: const EdgeInsets.only(left: 28, right: 28, top: 28),
     padding: const EdgeInsets.all(16),
-    decoration: const BoxDecoration(
+    decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 20,
+              spreadRadius: 5
+          ),
+        ],
         color: AppColors.secondaryBackgroundColor,
         borderRadius: BorderRadius.all(Radius.circular(15))),
     child: Row(

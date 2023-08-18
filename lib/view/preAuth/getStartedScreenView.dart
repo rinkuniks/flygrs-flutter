@@ -27,13 +27,13 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
           child: Pages(
         title: "Sam House",
         subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
-        imgPath: "assets/images/getStartedImage.png",
+        imgPath: "assets/images/slider2.png",
       )),
       const Center(
           child: Pages(
         title: "Micheal Jackson",
         subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
-        imgPath: "assets/images/getStartedImage.png",
+        imgPath: "assets/images/slider3.png",
       )),
     ];
   }
@@ -205,6 +205,7 @@ class Pages extends StatelessWidget {
     return Column(children: <Widget>[
       Container(
         width: MediaQuery.of(context).size.width,
+        height: 356,
         padding: const EdgeInsets.only(left: 24),
         color: AppColors.primaryBackgroundColor,
         child: Image.asset(

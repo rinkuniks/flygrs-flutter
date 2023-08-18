@@ -26,7 +26,9 @@ class _BookingScreenState extends State<BookingScreen> {
               counterTimer: "0",
               image: "assets/images/chau_image.png",
               popularity: "Most Popular",
-              amount: "10")),
+              amount: "10",
+              isSelected: true
+          )),
       const Center(
           child: Pages(
               titleTiming: "8:15pm",
@@ -34,7 +36,9 @@ class _BookingScreenState extends State<BookingScreen> {
               counterTimer: "2",
               image: "assets/images/chau_image.png",
               popularity: "",
-              amount: "10")),
+              amount: "10",
+              isSelected: false
+          )),
       const Center(
           child: Pages(
               titleTiming: "8:15pm",
@@ -42,7 +46,9 @@ class _BookingScreenState extends State<BookingScreen> {
               counterTimer: "1",
               image: "assets/images/chau_image.png",
               popularity: "Most Popular",
-              amount: "10")),
+              amount: "10",
+              isSelected: false
+          )),
       const Center(
           child: Pages(
               titleTiming: "8:15pm",
@@ -50,7 +56,9 @@ class _BookingScreenState extends State<BookingScreen> {
               counterTimer: "4",
               image: "assets/images/chau_image.png",
               popularity: "",
-              amount: "10")),
+              amount: "10",
+              isSelected: false
+          )),
     ];
   }
 
@@ -74,7 +82,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 //Details to select
                 Container(
                   height: 400,
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.only(top: 15),
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       color: AppColors.primaryBackgroundColor,
@@ -117,6 +125,7 @@ class _BookingScreenState extends State<BookingScreen> {
                               onTap: (){
                                 if (kDebugMode) {
                                   print("======$index");
+
                                 }
                               },
                                 child: _list(context).elementAt(index));
@@ -152,6 +161,10 @@ class _BookingScreenState extends State<BookingScreen> {
                         height: 20,
                       ),
                       AppGradientButton(
+                          topLeftCorner: 4,
+                          topRightCorner: 4,
+                          bottomRightCorner: 4,
+                          bottomLeftCorner: 4,
                           height: 40,
                           title: 'Book Now',
                           onTap: () {
@@ -178,6 +191,7 @@ class Pages extends StatefulWidget {
   final image;
   final popularity;
   final amount;
+  final isSelected;
 
   const Pages(
       {super.key,
@@ -186,7 +200,9 @@ class Pages extends StatefulWidget {
       this.counterTimer,
       this.image,
       this.popularity,
-      this.amount});
+      this.amount,
+        this.isSelected
+      });
 
   @override
   State<Pages> createState() => _PagesState();
@@ -198,6 +214,12 @@ class _PagesState extends State<Pages> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 10, bottom: 10),
+      margin: EdgeInsets.only(bottom: 10, left: 32, right: 32),
+
+      decoration: widget.isSelected ? BoxDecoration(
+        border: Border.all(color: Colors.white, width: 1),
+        borderRadius: BorderRadius.all(Radius.circular(10))
+      ) : null,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

@@ -3,6 +3,8 @@ import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
 import 'package:flygrs/res/components/HeaderBack.dart';
 import 'package:flygrs/res/components/NotificationHeader.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -13,6 +15,39 @@ class ActivityScreen extends StatefulWidget {
 
 class _ActivityScreenState extends State<ActivityScreen> {
   final List<String> entries = <String>['Payment Method', 'History', 'Invite Friends', 'Settings', 'Logout'];
+  String _selectedDate = '';
+  String _dateCount = '';
+  String _range = '';
+  String _rangeCount = '';
+  bool isShowCalendar = false;
+
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    /// The argument value will return the changed date as [DateTime] when the
+    /// widget [SfDateRangeSelectionMode] set as single.
+    ///
+    /// The argument value will return the changed dates as [List<DateTime>]
+    /// when the widget [SfDateRangeSelectionMode] set as multiple.
+    ///
+    /// The argument value will return the changed range as [PickerDateRange]
+    /// when the widget [SfDateRangeSelectionMode] set as range.
+    ///
+    /// The argument value will return the changed ranges as
+    /// [List<PickerDateRange] when the widget [SfDateRangeSelectionMode] set as
+    /// multi range.
+    setState(() {
+      if (args.value is PickerDateRange) {
+        _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
+        // ignore: lines_longer_than_80_chars
+            ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+      } else if (args.value is DateTime) {
+        _selectedDate = args.value.toString();
+      } else if (args.value is List<DateTime>) {
+        _dateCount = args.value.length.toString();
+      } else {
+        _rangeCount = args.value.length.toString();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +93,22 @@ class _ActivityScreenState extends State<ActivityScreen> {
                             child:  Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Jan-Feb 2023',
-                                  style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.black),
+                                InkWell(
+                                  onTap: (){
+                                    setState(() {
+                                      isShowCalendar = !isShowCalendar;
+                                    });
+                                  },
+                                  child:  Text(
+                                    'Jan-Feb 2023',
+                                    style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColors.black),
+                                  ),
                                 ),
+
                                 Image.asset(
                                   'assets/images/dropdown.png',
                                   height: 7,
@@ -218,6 +261,43 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     }
                 ),
               )
+          ),
+          if(isShowCalendar)
+          Positioned(
+            height: 450,
+            left: 32,
+            top: MediaQuery.of(context).size.height/2-200,
+            right: 32,
+
+            child: Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(27),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 10,
+                        spreadRadius: 1),
+                  ]),
+              child: SfDateRangePicker(
+                showActionButtons: true,
+                // onSubmit: (Object value) {
+                //   Navigator.pop(context);
+                // },
+                onCancel: () {
+                  setState(() {
+                    isShowCalendar=false;
+                  });
+                },
+                view: DateRangePickerView.year,
+                backgroundColor: AppColors.white,
+                // onSelectionChanged: _onSelectionChanged,
+                selectionMode: DateRangePickerSelectionMode.range,
+
+              ),
+            ),
           )
         ],
       ),

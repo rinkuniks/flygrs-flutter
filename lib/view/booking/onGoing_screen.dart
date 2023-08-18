@@ -260,7 +260,10 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                     Image.asset("assets/images/line.png"),
                     InkWell(
                       onTap: () {
-
+                         Navigator.pop(context);
+                         Future.delayed(const Duration(milliseconds: 100), () {
+                           Navigator.pushNamed(context, RouteName.rideCompleted);
+                         });
                       },
                       child: Text(
                         "Done",

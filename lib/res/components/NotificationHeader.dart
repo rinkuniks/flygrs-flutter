@@ -17,7 +17,7 @@ class _NotificationHeaderState extends State<NotificationHeader> {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.only(top: 40, right: 27, left: 20),
+      padding: const EdgeInsets.only(top: 40, right: 26, left: 20),
       child: Row(
         mainAxisAlignment: (widget.isBack ?? false == true) ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
         children: [
