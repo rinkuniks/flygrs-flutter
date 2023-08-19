@@ -42,151 +42,149 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: <Widget>[
-            // carousel UI
-            Expanded(
-              flex: 8,
-              child: Column(
-                children: [
-                  // Skip Btn UI
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 24, right: 24),
-                      color: AppColors.primaryBackgroundColor,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "Flygers.com",
-                            style:
-                                TextStyle(color: AppColors.white, fontSize: 12),
-                          ),
-                          Row(
-                            children: [
-                              InkWell(
-                                child: const Text(
-                                  "Skip",
-                                  style: TextStyle(
-                                      fontSize: 12, color: AppColors.white),
-                                ),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RouteName.bottomNavigation);
-                                },
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              ClipRRect(
-                                child: Image.asset(
-                                  'assets/images/skip.png',
-                                  height: 15,
-                                  width: 15,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  // Image Scrollable UI
-                  Expanded(
-                    flex: 9,
-                    child: PageView.builder(
-                      controller: _pageController,
-                      allowImplicitScrolling: true,
-                      //  children: _list,
-                      scrollDirection: Axis.horizontal,
-                      reverse: false,
-                      physics: const BouncingScrollPhysics(),
-                      // controller: controller,
-                      onPageChanged: (int pages) {
-                        setState(() {
-                          _activePage = pages;
-                        });
-                      },
-                      itemCount: _list(context).length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _list(context).elementAt(index);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Triple Dot UI
-            Expanded(
-              flex: 1,
-              child: Container(
-                color: AppColors.white,
-                padding: const EdgeInsets.only(left: 24, top: 20),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List<Widget>.generate(
-                      _list(context).length,
-                      (index) => Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: InkWell(
-                              onTap: () {
-                                _pageController.animateToPage(index,
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeIn);
-                              },
-                              child: CircleAvatar(
-                                radius: 7,
-                                backgroundColor: _activePage == index
-                                    ? AppColors.activeDot
-                                    : AppColors.deActiveDot,
-                              ),
-                            ),
-                          )),
-                ),
-              ),
-            ),
-            // Button UI
-            Expanded(
-              flex: 1,
-              child: Container(
-                color: AppColors.white,
-                padding: const EdgeInsets.only(left: 24),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: GestureDetector(
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: <Widget>[
+              // carousel UI
+              Expanded(
+                flex: 8,
+                child: Column(
+                  children: [
+                    // Skip Btn UI
+                    Expanded(
+                      flex: 1,
                       child: Container(
-                          width: 120,
-                          height: 40,
-                          alignment: Alignment.center,
-                          decoration: const BoxDecoration(
-                            color: Colors.black,
-                            image: DecorationImage(
-                                image: AssetImage("assets/images/btnBg.png"),
-                                fit: BoxFit.cover),
-                          ),
-                          child: const Text("Get Started",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "Poppins",
-                                  color: AppColors.white))),
-                      onTap: () {
-                        if (kDebugMode) {
-                          // Utils.snackBar("Clicked", context);
-                          // Navigator.pushNamed(context, RouteName.signupLogin);
-                          // Navigator.pushNamed(context, RouteName.bottomNavigation);
-                          Navigator.pushNamed(context, RouteName.signupLogin);
-                          // Navigator.pushNamed(context, RouteName.bottomNavigation);
-                          // Navigator.pushNamed(context, RouteName.bookingScreen);
-                          // Navigator.pushNamed(context, RouteName.takeMeHome);
-                        }
-                      }
+                        padding: const EdgeInsets.only(left: 24, right: 24),
+                        color: AppColors.primaryBackgroundColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Flygers.com",
+                              style:
+                                  TextStyle(color: AppColors.white, fontSize: 12),
+                            ),
+                            Row(
+                              children: [
+                                InkWell(
+                                  child: const Text(
+                                    "Skip",
+                                    style: TextStyle(
+                                        fontSize: 12, color: AppColors.white),
+                                  ),
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, RouteName.bottomNavigation);
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                ClipRRect(
+                                  child: Image.asset(
+                                    'assets/images/skip.png',
+                                    height: 15,
+                                    width: 15,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
+                    ),
+                    // Image Scrollable UI
+                    Expanded(
+                      flex: 9,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        allowImplicitScrolling: true,
+                        //  children: _list,
+                        scrollDirection: Axis.horizontal,
+                        reverse: false,
+                        physics: const BouncingScrollPhysics(),
+                        // controller: controller,
+                        onPageChanged: (int pages) {
+                          setState(() {
+                            _activePage = pages;
+                          });
+                        },
+                        itemCount: _list(context).length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return _list(context).elementAt(index);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              // Triple Dot UI
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: AppColors.white,
+                  padding: const EdgeInsets.only(left: 24, top: 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List<Widget>.generate(
+                        _list(context).length,
+                        (index) => Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 5),
+                              child: InkWell(
+                                onTap: () {
+                                  _pageController.animateToPage(index,
+                                      duration: const Duration(milliseconds: 300),
+                                      curve: Curves.easeIn);
+                                },
+                                child: CircleAvatar(
+                                  radius: 7,
+                                  backgroundColor: _activePage == index
+                                      ? AppColors.activeDot
+                                      : AppColors.deActiveDot,
+                                ),
+                              ),
+                            )),
+                  ),
+                ),
+              ),
+              // Button UI
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: AppColors.white,
+                  padding: const EdgeInsets.only(left: 24),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: GestureDetector(
+                        child: Container(
+                            width: 120,
+                            height: 40,
+                            alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                              color: Colors.black,
+                              image: DecorationImage(
+                                  image: AssetImage("assets/images/btnBg.png"),
+                                  fit: BoxFit.cover),
+                            ),
+                            child: const Text("Get Started",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Poppins",
+                                    color: AppColors.white))),
+                        onTap: () {
+                          if (kDebugMode) {
+                            // Utils.snackBar("Clicked", context);
+                            Navigator.pushNamed(context, RouteName.signupLogin);
+                          }
+                        }
+                        ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -202,10 +200,12 @@ class Pages extends StatelessWidget {
   const Pages({super.key, this.title, this.subTitle, this.imgPath});
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Column(children: <Widget>[
       Container(
-        width: MediaQuery.of(context).size.width,
-        height: 356,
+        width: screenWidth * 1,
+        height: screenHeight * 0.55,
         padding: const EdgeInsets.only(left: 24),
         color: AppColors.primaryBackgroundColor,
         child: Image.asset(
