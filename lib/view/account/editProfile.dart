@@ -16,13 +16,13 @@ class _EditProfileViewState extends State<EditProfileView> {
       backgroundColor: AppColors.secondaryBackgroundColor,
       body: Column(
         children: [
-         HeaderBack(whichBack: 'blueBack',),
+         const HeaderBack(whichBack: 'blueBack',),
           Padding(
-            padding: const EdgeInsets.only(top: 11.0, left: 29, right: 29),
+            padding: const EdgeInsets.only(top: 11.0, left: 24, right: 29),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'My Profile',
                   style: TextStyle(
                       fontFamily: 'Poppins',
@@ -49,21 +49,20 @@ class _EditProfileViewState extends State<EditProfileView> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 81, left: 28, right: 28),
+            margin: const EdgeInsets.only(top: 81, left: 24, right: 28),
             height: MediaQuery.of(context).size.height-300,
-            // color: Colors.red,
-            child: Column(
+            child: const Column(
               children: [
                 ProfileShadowView(title1: 'Name', title2: 'Ame',),
-                SizedBox(height: 9,),
+                SizedBox(height: 10,),
                 ProfileShadowView(title1: 'E-mail Address', title2: 'xyz@gmail.com',),
-                SizedBox(height: 9,),
+                SizedBox(height: 10,),
                 ProfileShadowView(title1: 'Mobile Number', title2: '0000 00 0000',),
-                SizedBox(height: 9,),
+                SizedBox(height: 10,),
                 ProfileShadowView(title1: 'Gender', title2: 'Female',),
-                SizedBox(height: 9,),
+                SizedBox(height: 10,),
                 ProfileShadowView(title1: 'Birthday', title2: 'DD/MM/YYYY',),
-                SizedBox(height: 9,),
+                SizedBox(height: 10,),
                 ProfileShadowView(title1: 'Change Password', title2: 'xxxxxxx',),
                 // Container(
                 //   height: 58,

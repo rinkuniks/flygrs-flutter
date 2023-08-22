@@ -22,7 +22,7 @@ class _HeaderBackState extends State<HeaderBack> {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: EdgeInsets.only(top: (widget.isSafeArea ?? false) ? 40 : 80, left: 16, right: 29),
+      padding: EdgeInsets.only(top: (widget.isSafeArea ?? false) ? 40 : 80, left: 24, right: 29),
       child: Column(
         children: [
           Row(

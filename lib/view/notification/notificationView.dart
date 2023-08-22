@@ -20,12 +20,12 @@ class _NotificationViewState extends State<NotificationView> {
           Container(
             color: AppColors.primaryBackgroundColor,
             height: 210,
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HeaderBack(whichBack: 'whiteBack',),
                 Padding(
-                  padding: const EdgeInsets.only(left: 27, top: 35),
+                  padding: EdgeInsets.only(left: 27, top: 35),
                   child: Text(
                     'Notification',
                     style: TextStyle(
@@ -39,10 +39,10 @@ class _NotificationViewState extends State<NotificationView> {
           ),
           Container(
             height: MediaQuery.of(context).size.height-210 ,
-            color: AppColors.secondaryBackgroundColor,
+            color: AppColors.white,
             child: ListView.separated(
-                padding: EdgeInsets.only(top: 10),
-                separatorBuilder: (context, index) => Divider(
+                padding: const EdgeInsets.only(top: 10),
+                separatorBuilder: (context, index) => const Divider(
                   color: Colors.black,
                 ),
                 itemCount: entries.length,
@@ -58,9 +58,9 @@ class _NotificationViewState extends State<NotificationView> {
                       background: Container(
                         color: AppColors.primaryBackgroundColor,
                         // margin: const EdgeInsets.symmetric(horizontal: 15),
-                        padding: EdgeInsets.only(right: 20),
+                        padding: const EdgeInsets.only(right: 20),
                         alignment: Alignment.centerRight,
-                        child: Text('Remove', style: TextStyle(
+                        child: const Text('Remove', style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                           fontFamily: 'Poppins',
@@ -68,19 +68,19 @@ class _NotificationViewState extends State<NotificationView> {
                         ),)
                       ),
                       child: Container(
-                        margin: EdgeInsets.only(left: 28, right: 28, top: 19, bottom: 19),
+                        margin: const EdgeInsets.only(left: 28, right: 28, top: 19, bottom: 19),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               '${entries[index]}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.black),
                             ),
-                            SizedBox(height: 5,),
-                            Text(
+                            const SizedBox(height: 5,),
+                            const Text(
                               'Your booking #1234 has been suc...',
                               style: TextStyle(
                                   fontSize: 16,

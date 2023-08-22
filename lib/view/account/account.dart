@@ -22,7 +22,7 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondaryBackgroundColor,
+      backgroundColor: AppColors.white,
       body: Stack(
         children: [
           Positioned(

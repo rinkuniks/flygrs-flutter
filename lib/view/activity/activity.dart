@@ -52,7 +52,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondaryBackgroundColor,
+      backgroundColor: AppColors.white,
       body: Stack(
         children: [
           Positioned(
@@ -60,22 +60,22 @@ class _ActivityScreenState extends State<ActivityScreen> {
               right: 0,
               left: 0,
               child: Container(
-                padding: EdgeInsets.only(top: 40),
+                padding: const EdgeInsets.only(top: 40),
                 height: MediaQuery.of(context).size.height / 2 -100,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(bottomLeft:  Radius.circular(27), bottomRight:  Radius.circular(27)),
                   color: AppColors.primaryBackgroundColor,
                 ),
                 child: Column(
                   children: [
-                   NotificationHeader(),
+                   const NotificationHeader(),
                     
                     Container(
-                      margin: EdgeInsets.only(left: 32, right: 32, top: 31),
+                      margin: const EdgeInsets.only(left: 32, right: 32, top: 31),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Activity',
                             style: TextStyle(
                                 fontFamily: 'Poppins',
@@ -86,7 +86,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                           Container(
                             height: 28,
                             width: 137,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: AppColors.secondaryBackgroundColor,
                               borderRadius: BorderRadius.all(Radius.circular(28))
                             ),
@@ -99,7 +99,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                       isShowCalendar = !isShowCalendar;
                                     });
                                   },
-                                  child:  Text(
+                                  child:  const Text(
                                     'Jan-Feb 2023',
                                     style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -137,7 +137,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                           height: 175,
-                          margin: EdgeInsets.only(bottom: 55),
+                          margin: const EdgeInsets.only(bottom: 55),
                         decoration: BoxDecoration(
                             color: AppColors.white,
                             borderRadius: BorderRadius.circular(27),
@@ -169,13 +169,13 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                         const SizedBox(
                                           width: 10,
                                         ),
-                                        Expanded(
+                                        const Expanded(
                                             child:  Text(
                                               'Noida Sector 15, E-19',
                                               style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   fontSize: 14,
-                                                  fontWeight: FontWeight.w900,
+                                                  fontWeight: FontWeight.w400,
                                                   color: AppColors.black),
                                             ),),
                                       ],
@@ -198,13 +198,13 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                         const SizedBox(
                                           width: 10,
                                         ),
-                                        Expanded(
+                                        const Expanded(
                                             child:  Text(
                                               'Anand Vihar Delhi, Phase 2',
                                               style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   fontSize: 14,
-                                                  fontWeight: FontWeight.w900,
+                                                  fontWeight: FontWeight.w400,
                                                   color: AppColors.black),
                                             ),),
                                       ],
@@ -224,8 +224,8 @@ class _ActivityScreenState extends State<ActivityScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    '25.00',
+                                  const Text(
+                                    '\$ 25.00',
                                     style: TextStyle(
                                         fontFamily: 'Poppins',
                                         fontSize: 16,
@@ -235,7 +235,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Completed',
                                         style: TextStyle(
                                             fontFamily: 'Poppins',
@@ -243,7 +243,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                             fontWeight: FontWeight.w400,
                                             color: AppColors.black),
                                       ),
-                                      SizedBox(width: 2,),
+                                      const SizedBox(width: 10,),
                                       Image.asset(
                                         'assets/images/arrow.png',
                                         height: 10,
@@ -271,7 +271,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
 
             child: Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(27),
