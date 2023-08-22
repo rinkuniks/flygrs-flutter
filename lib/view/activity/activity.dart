@@ -125,9 +125,9 @@ class _ActivityScreenState extends State<ActivityScreen> {
               )
           ),
           Positioned(
-              top: 250,
+              top: 190,
               child: Container(
-                height: MediaQuery.of(context).size.height-250,
+                height: MediaQuery.of(context).size.height-240,
                 width: MediaQuery.of(context).size.width - 40,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
 
