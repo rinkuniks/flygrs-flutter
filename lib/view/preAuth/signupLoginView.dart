@@ -27,7 +27,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
               right: 0,
               child: Container(
                 height: isSignupScreen ? 280 : 200,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.secondaryBackgroundColor,
                 ),
                 child: Container(
@@ -43,7 +43,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                       ),
                     ),
                     if (isSignupScreen)
-                      Text(
+                      const Text(
                         "Hello Again!",
                         style: TextStyle(
                           fontSize: 36,
@@ -54,7 +54,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                     if (isSignupScreen)
                       Container(
                         width: 228,
-                        child: Text(
+                        child: const Text(
                           "Welcome back you've been missed!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -69,16 +69,16 @@ class _SignupLoginViewState extends State<SignupLoginView> {
               )),
           buildBottomHalfContainer(true),
           AnimatedPositioned(
-            duration: Duration(milliseconds: 700),
+            duration: const Duration(milliseconds: 700),
             curve: Curves.bounceInOut,
             top: isSignupScreen ? 280 : 180,
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 700),
+              duration: const Duration(milliseconds: 700),
               curve: Curves.bounceInOut,
               height: isSignupScreen ? 280 : 410,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width - 40,
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -166,21 +166,23 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: (){
+                        onTap: () {
                           setState(() {
                             isChecked = !isChecked;
                           });
                         },
                         child: Image.asset(
-                          isChecked ? 'assets/images/selectedCheckbox.png' : 'assets/images/checkbox.png',
+                          isChecked
+                              ? 'assets/images/selectedCheckbox.png'
+                              : 'assets/images/checkbox.png',
                           height: 17,
                           width: 17,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         "I accept all terms and conditions",
                         style: TextStyle(
                             fontSize: 12, fontWeight: FontWeight.w300),
@@ -188,7 +190,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Row(
@@ -198,11 +200,11 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                       'assets/images/leftLine.png',
                       width: 68,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text("Or Continue with"),
-                    SizedBox(
+                    const Text("Or Continue with"),
+                    const SizedBox(
                       width: 5,
                     ),
                     Image.asset(
@@ -212,9 +214,10 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(right: 80, left: 80, top: 15),
+                  margin: const EdgeInsets.only(top: 15),
+                  width: MediaQuery.of(context).size.width * 1,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       buildTextButton(
                           Image.asset(
@@ -253,7 +256,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   Container buildSigninSection() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           AppTextField(
@@ -278,7 +281,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                       onPressed: () {
                         Navigator.pushNamed(context, RouteName.takeMeHome);
                       },
-                      child: Text("Remember Me",
+                      child: const Text("Remember Me",
                           style: TextStyle(
                               fontSize: 10,
                               color: AppColors.rememberMeButtonColor,
@@ -286,14 +289,14 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                     )
                   ],
                 ),
-                Text(
+                const Text(
                   '|',
                   style: TextStyle(
                       fontSize: 10, color: AppColors.rememberMeButtonColor),
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: Text("Forgot Password",
+                  child: const Text("Forgot Password",
                       style: TextStyle(
                           fontSize: 10,
                           color: AppColors.rememberMeButtonColor,
@@ -309,7 +312,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   Container buildSignupSection() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           AppTextField(
@@ -346,13 +349,11 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   TextButton buildTextButton(Image iconImg, title, Color backgroundColor) {
     return TextButton(
-      onPressed: () {
-
-      },
+      onPressed: () {},
       child: Row(
         children: [
           ClipRRect(child: iconImg),
-          SizedBox(
+          const SizedBox(
             width: 5,
           ),
         ],
@@ -362,62 +363,61 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   Widget buildBottomHalfContainer(bool showShadow) {
     return AnimatedPositioned(
-      duration: Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 700),
       curve: Curves.bounceInOut,
       top: isSignupScreen ? 535 : 565,
       right: 0,
       left: 0,
       child: Center(
-        child: InkWell(
-          onTap: (){
-            Navigator.pushNamed(
-                context, RouteName.bottomNavigation);
-          },
-          child: Container(
-            height: 48,
-            width: 222,
-            // padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  if (showShadow)
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.3),
-                      spreadRadius: 1.5,
-                      blurRadius: 10,
-                    )
-                ]),
-            child: !showShadow
-                ? Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      AppColors.gradient1,
-                      AppColors.gradient2,
-                      AppColors.gradient3,
-                    ], stops: [
-                      0.0,
-                      0.5,
-                      0.9
-                    ]),
-                    borderRadius: BorderRadius.circular(3),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(.3),
-                          spreadRadius: 1,
-                          blurRadius: 2,
-                          offset: Offset(0, 1))
-                    ]),
-                child: Center(
-                  child: Text(
-                    !isSignupScreen ? 'Sign Up' : 'Sign In',
-                    style: TextStyle(color: AppColors.white, fontSize: 16),
-                  ),
-                ))
-                : Center(),
-          ),
-        )
-      ),
+          child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, RouteName.bottomNavigation);
+        },
+        child: Container(
+          height: 48,
+          width: 222,
+          // padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                if (showShadow)
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.3),
+                    spreadRadius: 1.5,
+                    blurRadius: 10,
+                  )
+              ]),
+          child: !showShadow
+              ? Container(
+                  decoration: BoxDecoration(
+                      gradient: const LinearGradient(colors: [
+                        AppColors.gradient1,
+                        AppColors.gradient2,
+                        AppColors.gradient3,
+                      ], stops: [
+                        0.0,
+                        0.5,
+                        0.9
+                      ]),
+                      borderRadius: BorderRadius.circular(3),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(.3),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: const Offset(0, 1))
+                      ]),
+                  child: Center(
+                    child: Text(
+                      !isSignupScreen ? 'Sign Up' : 'Sign In',
+                      style:
+                          const TextStyle(color: AppColors.white, fontSize: 16),
+                    ),
+                  ))
+              : const Center(),
+        ),
+      )),
     );
   }
 }
