@@ -19,20 +19,20 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
     return [
       const Center(
           child: Pages(
-        title: "Qwerty",
-        subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
+        title: "Captain America",
+        subTitle: "This is the first page which you are looking above with the image.",
         imgPath: "assets/images/getStartedImage.png",
       )),
       const Center(
           child: Pages(
-        title: "Sam House",
-        subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
+        title: "Ironman",
+        subTitle: "This is the Second page which you are looking above with the image.",
         imgPath: "assets/images/slider2.png",
       )),
       const Center(
           child: Pages(
-        title: "Micheal Jackson",
-        subTitle: "sajkhdjakdhakjhhagfdhjasdbasdbjkashdkjasdhjkasdhajksdhajks",
+        title: "Thor",
+        subTitle: "This is the Third page which you are looking above with the image.",
         imgPath: "assets/images/slider3.png",
       )),
     ];
@@ -194,7 +194,6 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
 class Pages extends StatelessWidget {
   final title;
   final subTitle;
-  // final color;
   final imgPath;
 
   const Pages({super.key, this.title, this.subTitle, this.imgPath});
@@ -210,7 +209,6 @@ class Pages extends StatelessWidget {
         color: AppColors.primaryBackgroundColor,
         child: Image.asset(
           imgPath,
-          // fit: BoxFit.fill,
         ),
       ),
       Expanded(
@@ -226,15 +224,15 @@ class Pages extends StatelessWidget {
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                     fontSize: 24,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w600,
                     color: AppColors.black),
               ),
+              const SizedBox(height: 10,),
               Text(
                 subTitle,
                 textAlign: TextAlign.left,
                 style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
                     color: AppColors.black),
               ),
             ],

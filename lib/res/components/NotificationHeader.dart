@@ -17,7 +17,7 @@ class _NotificationHeaderState extends State<NotificationHeader> {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.only(top: 40, right: 26, left: 20),
+      padding: const EdgeInsets.only(top: 40, right: 30, left: 20),
       child: Row(
         mainAxisAlignment: (widget.isBack ?? false == true) ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
         children: [
@@ -38,8 +38,8 @@ class _NotificationHeaderState extends State<NotificationHeader> {
             },
             child: Image.asset(
               'assets/images/notification.png',
-              height: 23,
-              width: 23,
+              height: 25,
+              width: 25,
             ),
           )
         ],

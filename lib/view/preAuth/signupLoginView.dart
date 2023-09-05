@@ -91,14 +91,11 @@ class _SignupLoginViewState extends State<SignupLoginView> {
               child: SingleChildScrollView(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                                child: SizedBox(
-                              height: 58,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
                               child: TextButton(
                                   onPressed: () {
                                     setState(() {
@@ -109,18 +106,18 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                                       backgroundColor: isSignupScreen
                                           ? AppColors.primaryBackgroundColor
                                           : AppColors.secondaryBackgroundColor),
-                                  child: Text(
-                                    "Sign Up",
-                                    style: TextStyle(
-                                        color: isSignupScreen
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 16),
-                                  )),
-                            )),
-                            Expanded(
-                                child: SizedBox(
-                              height: 58,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Text(
+                                      "Sign Up",
+                                      style: TextStyle(
+                                          color: isSignupScreen
+                                              ? Colors.white
+                                              : Colors.black,
+                                          fontSize: 16),
+                                    ),
+                                  ))),
+                          Expanded(
                               child: TextButton(
                                   onPressed: () {
                                     setState(() {
@@ -131,21 +128,22 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                                       backgroundColor: isSignupScreen
                                           ? AppColors.secondaryBackgroundColor
                                           : AppColors.primaryBackgroundColor),
-                                  child: Text(
-                                    "Sign In",
-                                    style: TextStyle(
-                                        color: !isSignupScreen
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 16),
-                                  )),
-                            )),
-                          ],
-                        ),
-                        if (!isSignupScreen) buildSignupSection(),
-                        if (isSignupScreen) buildSigninSection()
-                      ],
-                    ),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Text(
+                                      "Sign In",
+                                      style: TextStyle(
+                                          color: !isSignupScreen
+                                              ? Colors.white
+                                              : Colors.black,
+                                          fontSize: 16),
+                                    ),
+                                  ))),
+                        ],
+                      ),
+                      if (!isSignupScreen) buildSignupSection(),
+                      if (isSignupScreen) buildSigninSection()
+                    ],
                   ),
                 ),
               ),
@@ -270,7 +268,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             obSecure: true,
             keyboardType: TextInputType.text,
           ),
-          Container(
+          SizedBox(
             width: 200,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -25,20 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 3,
             child: Container(
               padding: const EdgeInsets.only(left: 24,top: 30),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   NotificationHeader(),
-                  SizedBox(height: 10,),
-                  const Text(
+                  Text(
                     "Hello , Amy !",
                     style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w900,
                         color: AppColors.white),
                   ),
-                  const Text(
+                  Text(
                     "Where do you want to go?",
                     style: TextStyle(
                         fontSize: 20,
@@ -88,7 +87,7 @@ Widget homeScreenComponent(BuildContext context, String title, String image) {
   return SingleChildScrollView(
     scrollDirection: Axis.vertical,
     child: Container(
-      margin: const EdgeInsets.only(left: 28, right: 28, top: 36),
+      margin: const EdgeInsets.only(left: 30, right: 30, top: 36),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           boxShadow: [
@@ -99,7 +98,7 @@ Widget homeScreenComponent(BuildContext context, String title, String image) {
             ),
           ],
           color: AppColors.secondaryBackgroundColor,
-          borderRadius: BorderRadius.all(Radius.circular(15))),
+          borderRadius: const BorderRadius.all(Radius.circular(15))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -180,7 +179,7 @@ Widget homeScreenTwoComponent(BuildContext context, String title, String image) 
           ),
         ],
         color: AppColors.secondaryBackgroundColor,
-        borderRadius: BorderRadius.all(Radius.circular(15))),
+        borderRadius: const BorderRadius.all(Radius.circular(15))),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
