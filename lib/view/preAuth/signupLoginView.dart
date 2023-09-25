@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
+import 'package:flygrs/view_model/login_view_model.dart';
+import 'package:provider/provider.dart';
+
+import '../../Utils/util.dart';
+import '../../view_model/auth_view_model.dart';
 
 class SignupLoginView extends StatefulWidget {
   const SignupLoginView({super.key});
@@ -14,9 +19,22 @@ class _SignupLoginViewState extends State<SignupLoginView> {
   bool isSignupScreen = true;
   bool? obSecure;
   bool isChecked = false;
+  ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
+  TextEditingController emailC = TextEditingController();
+  TextEditingController passwordC = TextEditingController();
+  late AuthViewModel loginViewModel = AuthViewModel();
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailC.dispose();
+    passwordC.dispose();
+    _obsecurePassword.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    loginViewModel = Provider.of<AuthViewModel>(context);
     return Scaffold(
       backgroundColor: AppColors.secondaryBackgroundColor,
       body: Stack(
@@ -31,8 +49,8 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                   color: AppColors.secondaryBackgroundColor,
                 ),
                 child: Container(
-                  padding:
-                      EdgeInsets.only(top: !isSignupScreen ? 70 : 80, left: 20),
+                  padding: EdgeInsets.only(
+                      top: !isSignupScreen ? 70 : 80, left: 20),
                   color: AppColors.secondaryBackgroundColor,
                   child: Column(children: [
                     ClipRRect(
@@ -52,9 +70,9 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                         ),
                       ),
                     if (isSignupScreen)
-                      Container(
+                      const SizedBox(
                         width: 228,
-                        child: const Text(
+                        child: Text(
                           "Welcome back you've been missed!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -105,11 +123,12 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                                   style: TextButton.styleFrom(
                                       backgroundColor: isSignupScreen
                                           ? AppColors.primaryBackgroundColor
-                                          : AppColors.secondaryBackgroundColor),
+                                          : AppColors
+                                              .secondaryBackgroundColor),
                                   child: Container(
                                     padding: const EdgeInsets.all(8),
                                     child: Text(
-                                      "Sign Up",
+                                      "Sign In",
                                       style: TextStyle(
                                           color: isSignupScreen
                                               ? Colors.white
@@ -131,7 +150,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                                   child: Container(
                                     padding: const EdgeInsets.all(8),
                                     child: Text(
-                                      "Sign In",
+                                      "Sign Up",
                                       style: TextStyle(
                                           color: !isSignupScreen
                                               ? Colors.white
@@ -158,35 +177,32 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             left: 0,
             child: Column(
               children: [
-                Container(
-                  // margin: EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            isChecked = !isChecked;
-                          });
-                        },
-                        child: Image.asset(
-                          isChecked
-                              ? 'assets/images/selectedCheckbox.png'
-                              : 'assets/images/checkbox.png',
-                          height: 17,
-                          width: 17,
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isChecked = !isChecked;
+                        });
+                      },
+                      child: Image.asset(
+                        isChecked
+                            ? 'assets/images/selectedCheckbox.png'
+                            : 'assets/images/checkbox.png',
+                        height: 17,
+                        width: 17,
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        "I accept all terms and conditions",
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      "I accept all terms and conditions",
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w300),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 50,
@@ -260,12 +276,31 @@ class _SignupLoginViewState extends State<SignupLoginView> {
           AppTextField(
             hintText: "info@demouri.com",
             isPassword: false,
+            controller: emailC,
+            validator: (value) {
+              bool emailValid = RegExp(
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                  .hasMatch(value ?? "");
+              if (emailValid == false) {
+                return 'Enter valid email';
+              }
+              return null;
+            },
             keyboardType: TextInputType.emailAddress,
           ),
           AppTextField(
             hintText: "**********",
             isPassword: true,
             obSecure: true,
+            controller: passwordC,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter password';
+              } else if (!(value.length >= 8)) {
+                return 'Password Greater then 8 character';
+              }
+              return null;
+            },
             keyboardType: TextInputType.text,
           ),
           SizedBox(
@@ -369,12 +404,11 @@ class _SignupLoginViewState extends State<SignupLoginView> {
       child: Center(
           child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, RouteName.bottomNavigation);
+          !isSignupScreen ? signUpApiCall(context) : loginApiCall();
         },
         child: Container(
           height: 48,
           width: 222,
-          // padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
               color: Colors.green,
               borderRadius: BorderRadius.circular(10),
@@ -417,5 +451,19 @@ class _SignupLoginViewState extends State<SignupLoginView> {
         ),
       )),
     );
+  }
+
+  loginApiCall() {
+    print("----------Sign In");
+      Map data = {
+        "email": emailC.text,
+        "password": passwordC.text,
+      };
+      loginViewModel.loginApi(data, context);
+    }
+
+  signUpApiCall(BuildContext context) {
+    print("----------Sign Up");
+    Navigator.pushNamed(context, RouteName.bottomNavigation);
   }
 }

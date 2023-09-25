@@ -40,6 +40,12 @@ dependencies:
   flutter_share: ^2.0.0
   intl: ^0.18.0
   syncfusion_flutter_datepicker: ^22.2.9
+  shimmer: ^3.0.0
+  fluttertoast: 8.0.9
+  another_flushbar: 1.10.29
+  shared_preferences: 2.0.15
+  http:
+  provider: 6.0.3
 
 dev_dependencies:
   flutter_test:

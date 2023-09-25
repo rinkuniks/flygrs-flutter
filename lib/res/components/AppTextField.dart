@@ -28,7 +28,7 @@ class AppTextField extends StatefulWidget {
     this.textFieldFocusColor,
     this.prefixIcon,
     this.textInputAction,
-    this.borderRadius,
+    this.borderRadius, this.controller,
   });
 
   final double? fontSize;
@@ -45,6 +45,7 @@ class AppTextField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   ValueChanged<String>? onFieldSubmitted;
   final FormFieldSetter<String>? onChanged;
+  final TextEditingController? controller ;
 
   final bool? isPassword;
   bool? obSecure;
@@ -68,6 +69,7 @@ class _AppTextFieldState extends State<AppTextField> {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: TextField(
         obscureText: widget.obSecure ?? false,
+        controller:widget.controller,
         keyboardType: widget.keyboardType ?? TextInputType.emailAddress,
         decoration: InputDecoration(
           // prefixIcon: Icon(
