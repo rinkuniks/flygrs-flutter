@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flygrs/Utils/constant.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
@@ -49,8 +50,8 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                   color: AppColors.secondaryBackgroundColor,
                 ),
                 child: Container(
-                  padding: EdgeInsets.only(
-                      top: !isSignupScreen ? 70 : 80, left: 20),
+                  padding:
+                      EdgeInsets.only(top: !isSignupScreen ? 70 : 80, left: 20),
                   color: AppColors.secondaryBackgroundColor,
                   child: Column(children: [
                     ClipRRect(
@@ -123,8 +124,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                                   style: TextButton.styleFrom(
                                       backgroundColor: isSignupScreen
                                           ? AppColors.primaryBackgroundColor
-                                          : AppColors
-                                              .secondaryBackgroundColor),
+                                          : AppColors.secondaryBackgroundColor),
                                   child: Container(
                                     padding: const EdgeInsets.all(8),
                                     child: Text(
@@ -199,8 +199,8 @@ class _SignupLoginViewState extends State<SignupLoginView> {
                     ),
                     const Text(
                       "I accept all terms and conditions",
-                      style: TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w300),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
                     ),
                   ],
                 ),
@@ -277,15 +277,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             hintText: "info@demouri.com",
             isPassword: false,
             controller: emailC,
-            validator: (value) {
-              bool emailValid = RegExp(
-                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                  .hasMatch(value ?? "");
-              if (emailValid == false) {
-                return 'Enter valid email';
-              }
-              return null;
-            },
             keyboardType: TextInputType.emailAddress,
           ),
           AppTextField(
@@ -293,14 +284,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             isPassword: true,
             obSecure: true,
             controller: passwordC,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter password';
-              } else if (!(value.length >= 8)) {
-                return 'Password Greater then 8 character';
-              }
-              return null;
-            },
             keyboardType: TextInputType.text,
           ),
           SizedBox(
@@ -455,12 +438,22 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   loginApiCall() async {
     print("----------Sign In");
+    if (emailC.text.isEmpty ) {
+      Utils.toastMessage("Please enter email id ");
+    }else if(!Constant.EMAILVALID.hasMatch(emailC.text)){
+      Utils.toastMessage("Please enter valid email id ");
+    } else if(passwordC.text.isEmpty){
+      Utils.toastMessage("Please enter your password ");
+    } else if(passwordC.text.length <= 6) {
+      Utils.toastMessage("Please enter least 6 digit password");
+    }else {
       Map data = {
         "email": emailC.text,
         "password": passwordC.text,
       };
       loginViewModel.loginApi(data, context);
     }
+  }
 
   signUpApiCall(BuildContext context) async {
     print("----------Sign Up");

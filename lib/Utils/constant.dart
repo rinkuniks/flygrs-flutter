@@ -6,4 +6,5 @@ class Constant {
   static const String USER_TYPE = "2";
   static  String TOKEN = "";
   static String USERDATA = "";
+  static RegExp EMAILVALID = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 }
