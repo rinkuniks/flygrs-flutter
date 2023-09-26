@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flygrs/Utils/constant.dart';
 import 'package:flygrs/models/LoginResponse.dart';
 import 'package:flygrs/view/account/account.dart';
 import 'package:flygrs/view/activity/activity.dart';
 import 'package:flygrs/view/home/home_screen.dart';
 import 'package:flygrs/view_model/login_view_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../Utils/res/Assets.dart';
 import '../../Utils/res/colors.dart';
 
