@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/models/LoginResponse.dart';
+import 'package:flygrs/view_model/signup_view_model.dart';
 import 'package:provider/provider.dart';
 import '../Utils/util.dart';
 import '../respository/auth_repository.dart';
@@ -25,7 +26,10 @@ class AuthViewModel with ChangeNotifier {
       userPreference.saveUser(Data(
         token: value['token'].toString(),
       ));
-      Utils.toastMessage('Login Successful');
+      userPreference.saveUser(Data(
+        token: value['name'].toString(),
+      ));
+      Utils.toastMessage('Login Successfully');
       Navigator.pushNamed(context, RouteName.bottomNavigation);
       if (kDebugMode) {
         print("-----${value.toString()}");
@@ -40,15 +44,24 @@ class AuthViewModel with ChangeNotifier {
   }
 
   // /// for sign up
-  // Future<void> signUpApi(dynamic data, BuildContext context) async {
-  //   setLoading(true);
-  //   _myRepo.signUpApi(data).then((value) {
-  //     setLoading(false);
-  //     Utils.flushBarError('signUp Succesfuly', context);
-  //     Navigator.pushNamed(context, RouteName.home);
-  //   }).onError((error, stackTrace) {
-  //     setLoading(false);
-  //     Utils.flushBarError(error.toString(), context);
-  //   });
-  // }
+  Future<void> signUpApi(dynamic data, BuildContext context) async {
+    setLoading(true);
+    _myRepo.signUpApi(data).then((value) {
+      setLoading(false);
+      final userPreference = Provider.of<SignUpViewModel>(context, listen: false);
+      userPreference.saveUser(Data(
+          token: value['token'].toString(),
+      ));
+      userPreference.saveUser(Data(
+        token: value['name'].toString(),
+      ));
+      Utils.toastMessage('signUp Successfully');
+      Navigator.pushNamed(context, RouteName.bottomNavigation);
+    }).onError((error, stackTrace) {
+      setLoading(false);
+      Utils.flushBarError(error.toString(), context);
+    });
+  }
 }
+
+///for get Profile

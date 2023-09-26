@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/NotificationHeader.dart';
+import 'package:flygrs/view_model/profile_view_model.dart';
+import 'package:provider/provider.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -18,6 +20,14 @@ class _AccountScreenState extends State<AccountScreen> {
     {'title': 'Settings', 'image': 'assets/images/setting.png'},
     {'title': 'Logout', 'image': 'assets/images/logout.png'}
   ];
+
+  ProfileViewModel profileViewModel = ProfileViewModel();
+
+  @override
+  void initState() {
+    profileViewModel.fetchProfileDataApi();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,41 +76,47 @@ class _AccountScreenState extends State<AccountScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(13.0),
-                                    child: Column(
-                                      children: [
-                                        const Text(
-                                          'Amy',
-                                          style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                              color: AppColors.white),
-                                        ),
-                                        const SizedBox(height: 2,),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                    child: ChangeNotifierProvider<ProfileViewModel>(
+                                      create: (BuildContext context) => profileViewModel,
+                                      child: Consumer<ProfileViewModel>(builder: (context, value, _) {
+                                        return Column(
                                           children: [
-                                            Image.asset(
-                                              'assets/images/ratingStar.png',
-                                              height: 19,
-                                              width: 19,
+                                             Text(
+                                              '${value.profileData?.data?.data?.name}',
+                                              style: const TextStyle(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColors.white),
                                             ),
+                                            const SizedBox(height: 2,),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/ratingStar.png',
+                                                  height: 19,
+                                                  width: 19,
+                                                ),
 
-                                            const Padding(
-                                              padding: EdgeInsets.only(left: 3.0),
-                                              child: Text(
-                                                '4.5',
-                                                style: TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w300,
-                                                    color: AppColors.white),
-                                              ),
-                                            ),
+                                                const Padding(
+                                                  padding: EdgeInsets.only(left: 3.0),
+                                                  child: Text(
+                                                    '4.5',
+                                                    style: TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w300,
+                                                        color: AppColors.white),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
                                           ],
-                                        )
-                                      ],
-                                    ),
+                                        );
+                                      }
+                                      )
+                                    )
                                   )
                                 ],
                               ),

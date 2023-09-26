@@ -3,6 +3,7 @@ import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/Utils/route/routes.dart';
 import 'package:flygrs/view_model/auth_view_model.dart';
 import 'package:flygrs/view_model/login_view_model.dart';
+import 'package:flygrs/view_model/signup_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -23,7 +24,9 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
-        ChangeNotifierProvider(create: (_) => LoginViewModel())
+        ChangeNotifierProvider(create: (_) => LoginViewModel()),
+        ChangeNotifierProvider(create: (_) => SignUpViewModel())
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

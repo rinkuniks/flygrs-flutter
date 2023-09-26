@@ -3,10 +3,7 @@ import 'package:flygrs/Utils/constant.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
-import 'package:flygrs/view_model/login_view_model.dart';
 import 'package:provider/provider.dart';
-
-import '../../Utils/util.dart';
 import '../../view_model/auth_view_model.dart';
 
 class SignupLoginView extends StatefulWidget {
@@ -20,10 +17,20 @@ class _SignupLoginViewState extends State<SignupLoginView> {
   bool isSignupScreen = true;
   bool? obSecure;
   bool isChecked = false;
-  ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
+
+  final ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
+
+  /// Login
   TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
+
+  /// SignUp
+  TextEditingController nameC = TextEditingController();
+  TextEditingController confirmPasswordC = TextEditingController();
+  TextEditingController phoneC = TextEditingController();
+
   late AuthViewModel loginViewModel = AuthViewModel();
+  late AuthViewModel signUpViewModel = AuthViewModel();
 
   @override
   void dispose() {
@@ -274,7 +281,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
       child: Column(
         children: [
           AppTextField(
-            hintText: "info@demouri.com",
+            hintText: "info@demourii.com",
             isPassword: false,
             controller: emailC,
             keyboardType: TextInputType.emailAddress,
@@ -332,31 +339,70 @@ class _SignupLoginViewState extends State<SignupLoginView> {
       child: Column(
         children: [
           AppTextField(
+            controller: nameC,
             hintText: "Name",
             isPassword: false,
             keyboardType: TextInputType.text,
+            validator: (value) {
+              if (value == '') {
+                return 'Please enter your name';
+              }
+              return null;
+            },
           ),
           AppTextField(
+            controller: emailC,
+            maxLength: 25,
             hintText: "Email",
             isPassword: false,
             keyboardType: TextInputType.emailAddress,
+            validator: (value) {
+              bool emailValid = RegExp(
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                  .hasMatch(value ?? "");
+              if (emailValid == false) {
+                return 'Enter valid email';
+              }
+              return null;
+            },
           ),
           AppTextField(
+            controller: passwordC,
             hintText: "Password",
             isPassword: true,
             obSecure: true,
             keyboardType: TextInputType.text,
+            validator: (value) {
+              if (value == '') {
+                return 'Please enter your password';
+              }
+            },
           ),
           AppTextField(
+            controller: confirmPasswordC,
             hintText: "Confirm Passwrod",
             isPassword: false,
             obSecure: true,
             keyboardType: TextInputType.text,
+            validator: (value) {
+              if (value != passwordC.text){
+                return 'Password did not matched';
+              }
+              return null;
+            },
           ),
           AppTextField(
+            controller: phoneC,
+            maxLength: 10,
             hintText: "Phone No.",
             isPassword: false,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.phone,
+            validator: (value) {
+              if (value!.length < 10) {
+                return 'Please enter valid phone number';
+              }
+              return null;
+            },
           ),
         ],
       ),
@@ -457,6 +503,13 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   signUpApiCall(BuildContext context) async {
     print("----------Sign Up");
-    Navigator.pushNamed(context, RouteName.bottomNavigation);
+    Map data = {
+      "name": nameC.text,
+      "email": emailC.text,
+      "password": passwordC.text,
+      "c_password": confirmPasswordC.text,
+      "phone": phoneC.text
+    };
+    signUpViewModel.signUpApi(data, context);
   }
 }
