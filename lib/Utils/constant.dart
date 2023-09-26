@@ -7,4 +7,5 @@ class Constant {
   static  String TOKEN = "";
   static String USERDATA = "";
   static RegExp EMAILVALID = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  static RegExp PHONEVALID = RegExp(r"^[7-9]\d{9}$");
 }

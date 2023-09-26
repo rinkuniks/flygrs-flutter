@@ -14,7 +14,7 @@ class LoginViewModel with ChangeNotifier {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final String? token = sp.getString('token');
     return Data(
-      token: token!,
+      token: token,
     );
   }
 

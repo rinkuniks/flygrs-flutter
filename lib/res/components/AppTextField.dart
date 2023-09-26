@@ -67,9 +67,12 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
-      child: TextField(
+      child: TextFormField(
         obscureText: widget.obSecure ?? false,
         controller:widget.controller,
+        maxLength: widget.maxLength,
+        onChanged: widget.onChanged,
+        validator: widget.validator,
         keyboardType: widget.keyboardType ?? TextInputType.emailAddress,
         decoration: InputDecoration(
           // prefixIcon: Icon(

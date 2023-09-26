@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flygrs/Utils/constant.dart';
+import 'package:flygrs/models/LoginResponse.dart';
 import 'package:flygrs/view/account/account.dart';
 import 'package:flygrs/view/activity/activity.dart';
 import 'package:flygrs/view/home/home_screen.dart';
+import 'package:flygrs/view_model/login_view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Utils/res/Assets.dart';
 import '../../Utils/res/colors.dart';
 
@@ -35,6 +39,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
   }
 
   @override
@@ -95,5 +105,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
       ),
     );
+  }
+
+  void getData() async{
+    Future<Data> getUserdata() => LoginViewModel().getUser();
+    getUserdata().then((value) async {
+      print("########${value.token}");
+//         if (value.token == null || value.token.toString() == '') {
+//           await Future.delayed(const Duration(seconds: 3));
+//           print("1111-----------------------------");
+//           Navigator.pushNamed(context, RoutesName.intro);
+//           //       Navigator.pushNamed(context, RoutesName.home);
+//
+//         } else {
+//           await Future.delayed(const Duration(seconds: 3));
+//           print("1111-----------------------------2222");
+// //  Navigator.pushNamed(context, RoutesName.home);
+//           Navigator.pushNamed(context, RoutesName.intro);
+//         }
+    }).onError((error, stackTrace) {
+      print(error.toString());
+    });
   }
 }

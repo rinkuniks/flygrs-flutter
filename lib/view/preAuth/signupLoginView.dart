@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/constant.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/models/LoginResponse.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
 import 'package:provider/provider.dart';
 import '../../Utils/util.dart';
@@ -344,12 +345,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             hintText: "Name",
             isPassword: false,
             keyboardType: TextInputType.text,
-            validator: (value) {
-              if (value == '') {
-                return 'Please enter your name';
-              }
-              return null;
-            },
           ),
           AppTextField(
             controller: emailC,
@@ -357,15 +352,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             hintText: "Email",
             isPassword: false,
             keyboardType: TextInputType.emailAddress,
-            validator: (value) {
-              bool emailValid = RegExp(
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                  .hasMatch(value ?? "");
-              if (emailValid == false) {
-                return 'Enter valid email';
-              }
-              return null;
-            },
           ),
           AppTextField(
             controller: passwordC,
@@ -373,11 +359,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             isPassword: true,
             obSecure: true,
             keyboardType: TextInputType.text,
-            validator: (value) {
-              if (value == '') {
-                return 'Please enter your password';
-              }
-            },
           ),
           AppTextField(
             controller: confirmPasswordC,
@@ -385,12 +366,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             isPassword: false,
             obSecure: true,
             keyboardType: TextInputType.text,
-            validator: (value) {
-              if (value != passwordC.text){
-                return 'Password did not matched';
-              }
-              return null;
-            },
           ),
           AppTextField(
             controller: phoneC,
@@ -398,12 +373,6 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             hintText: "Phone No.",
             isPassword: false,
             keyboardType: TextInputType.phone,
-            validator: (value) {
-              if (value!.length < 10) {
-                return 'Please enter valid phone number';
-              }
-              return null;
-            },
           ),
         ],
       ),
@@ -485,15 +454,8 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   loginApiCall() async {
     print("----------Sign In");
-    if (emailC.text.isEmpty ) {
-      Utils.toastMessage("Please enter email id ");
-    }else if(!Constant.EMAILVALID.hasMatch(emailC.text)){
-      Utils.toastMessage("Please enter valid email id ");
-    } else if(passwordC.text.isEmpty){
-      Utils.toastMessage("Please enter your password ");
-    } else if(passwordC.text.length <= 6) {
-      Utils.toastMessage("Please enter least 6 digit password");
-    }else {
+    if (Utils.validEmail(emailC.text).isEmpty &&
+        Utils.validPassword(passwordC.text).isEmpty) {
       Map data = {
         "email": emailC.text,
         "password": passwordC.text,
@@ -504,13 +466,19 @@ class _SignupLoginViewState extends State<SignupLoginView> {
 
   signUpApiCall(BuildContext context) async {
     print("----------Sign Up");
-    Map data = {
-      "name": nameC.text,
-      "email": emailC.text,
-      "password": passwordC.text,
-      "c_password": confirmPasswordC.text,
-      "phone": phoneC.text
-    };
-    signUpViewModel.signUpApi(data, context);
+    if (Utils.validName(nameC.text).isEmpty &&
+        Utils.validEmail(emailC.text).isEmpty &&
+        Utils.validPassword(passwordC.text).isEmpty &&
+        Utils.comparePassword(passwordC.text, confirmPasswordC.text).isEmpty &&
+        Utils.validPhone(passwordC.text).isEmpty) {
+      Map data = {
+        "name": nameC.text,
+        "email": emailC.text,
+        "password": passwordC.text,
+        "c_password": confirmPasswordC.text,
+        "phone": phoneC.text
+      };
+      signUpViewModel.signUpApi(data, context);
+    }
   }
 }
