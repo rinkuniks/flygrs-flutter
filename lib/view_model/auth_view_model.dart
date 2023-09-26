@@ -28,13 +28,13 @@ class AuthViewModel with ChangeNotifier {
       Utils.toastMessage('Login Successful');
       Navigator.pushNamed(context, RouteName.bottomNavigation);
       if (kDebugMode) {
-        print(value.toString());
+        print("-----${value.toString()}");
       }
     }).onError((error, stackTrace) {
       setLoading(false);
       Utils.toastMessage(error.toString());
       if (kDebugMode) {
-        print(error.toString());
+        print("-----E${error.toString()}");
       }
     });
   }

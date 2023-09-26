@@ -453,7 +453,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
     );
   }
 
-  loginApiCall() {
+  loginApiCall() async {
     print("----------Sign In");
       Map data = {
         "email": emailC.text,
@@ -462,7 +462,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
       loginViewModel.loginApi(data, context);
     }
 
-  signUpApiCall(BuildContext context) {
+  signUpApiCall(BuildContext context) async {
     print("----------Sign Up");
     Navigator.pushNamed(context, RouteName.bottomNavigation);
   }
