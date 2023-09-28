@@ -10,9 +10,12 @@ class SplashServices {
     getUserdata().then((value) async {
       print(value.token);
       if (value.token == null || value.token.toString() == '') {
+        print(">>>>>>>>>>>>>>>>");
         await Future.delayed(const Duration(seconds: 3));
-        Navigator.pushNamed(context, RouteName.login);
+        Navigator.pushNamed(context, RouteName.getStartedScreen);
+        // Navigator.pushNamed(context, RouteName.login);
       } else {
+        print("????????????????");
         await Future.delayed(const Duration(seconds: 3));
         Navigator.pushNamed(context, RouteName.bottomNavigation);
       }

@@ -5,6 +5,7 @@ class AppUrl {
   //Auth URLS
   static var loginEndPoint = '$baseUrl/login';
   static var registerApiEndPoint = '$baseUrl/register';
+  static var logoutApiEndPoint = '$baseUrl/logout';
 
   //Dashboard URLS
   static var moviesBaseUrl =
@@ -13,5 +14,4 @@ class AppUrl {
 
   //Get Profile
   static var getProfileApiEndPoint = '$baseUrl/profile';
-
 }

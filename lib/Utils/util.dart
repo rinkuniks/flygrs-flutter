@@ -3,6 +3,7 @@ import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flygrs/Utils/res/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constant.dart';
 
@@ -87,6 +88,22 @@ class Utils{
     //Navigator.pop(context);
   }
 
+  /// Retrieve value from shared Preference
+  static Future<String> getStringValuesSF(String keyName) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String? stringValue = prefs.getString(keyName);
+    print("Name--"+stringValue!);
+    return stringValue;
+  }
+  static removeValues() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Remove String
+    prefs.remove("token");
+    prefs.remove('name');
+    //Remove bool
+    // prefs.remove("boolValue");
+  }
   static alertLoader(BuildContext context) {
     return showDialog(
       barrierDismissible: false,

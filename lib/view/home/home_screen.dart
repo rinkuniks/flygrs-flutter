@@ -4,6 +4,8 @@ import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
 import 'package:flygrs/res/components/NotificationHeader.dart';
 
+import '../../Utils/util.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -12,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,18 +26,26 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 3,
             child: Container(
               padding: const EdgeInsets.only(left: 24,top: 30),
-              child: const Column(
+              child:  Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   NotificationHeader(),
-                  Text(
-                    "Hello , Amy !",
-                    style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w900,
-                        color: AppColors.white),
-                  ),
+                  FutureBuilder<String>(
+                  future: Utils.getStringValuesSF('name'),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.hasData) {
+                      final theText = snapshot.data;
+                     return Text("Hello , ${theText} !",style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.white),
+                      );
+                    }//While awaiting show the loading indicator
+                    return Container();
+                  },
+                ),
                   Text(
                     "Where do you want to go?",
                     style: TextStyle(

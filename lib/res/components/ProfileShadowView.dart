@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
+import 'package:flygrs/res/components/Dropdown.dart';
 class ProfileShadowView extends StatefulWidget {
   const ProfileShadowView({
     super.key,
     this.title1,
-    this.title2
+    this.title2,
+    this.isDropdown,
+    this.items,
+    this.controller,
+    this.keyboardType,
+    this.onTap,
+
   });
   final String? title1;
   final String? title2;
+  final bool? isDropdown;
+  final List<String>? items;
+  final TextEditingController? controller;
+  final Function? onTap;
+  final TextInputType? keyboardType;
+
   @override
   State<ProfileShadowView> createState() => _ProfileShadowViewState();
 }
@@ -48,8 +61,11 @@ class _ProfileShadowViewState extends State<ProfileShadowView> {
                   width: 120,
                   child: Directionality(
                     textDirection: TextDirection.rtl,
-                    child: TextField(
+                    child: TextFormField(
                       textAlign: TextAlign.right,
+                      controller: widget.controller,
+                      keyboardType: widget.keyboardType ?? TextInputType.text,
+                      onTap: (){widget.onTap!();},
                       decoration: InputDecoration(
 
                         border: InputBorder.none,
@@ -61,8 +77,8 @@ class _ProfileShadowViewState extends State<ProfileShadowView> {
                             fontWeight: FontWeight.w400,
                             color: AppColors.black),
                       ),
-                      keyboardType: TextInputType.emailAddress,
                     ),
+                    //: Dropdown(items: widget.items!),
                   )
 
                 ),

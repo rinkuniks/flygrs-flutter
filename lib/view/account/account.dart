@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flygrs/Utils/constant.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:flygrs/Utils/util.dart';
 import 'package:flygrs/res/components/NotificationHeader.dart';
 import 'package:flygrs/view_model/profile_view_model.dart';
 import 'package:provider/provider.dart';
+
+import '../../res/components/BaseAlertDialog.dart';
+import '../../view_model/auth_view_model.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -22,6 +27,7 @@ class _AccountScreenState extends State<AccountScreen> {
   ];
 
   ProfileViewModel profileViewModel = ProfileViewModel();
+  late AuthViewModel authViewModel = AuthViewModel();
 
   @override
   void initState() {
@@ -55,7 +61,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Account',
+                          Constant.LBL_APPLE,
                           style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 24,
@@ -178,8 +184,11 @@ class _AccountScreenState extends State<AccountScreen> {
                                 ],
                               ),
                               onTap: (){
-                                if(index==3)
+                                if(index==3) {
                                   Navigator.pushNamed(context, RouteName.settingScreen);
+                                } else  if (index==4) {
+                                  _confirmLogout();
+                                }
                               },
                             )
                             // Center(child: Text('Entry ${entries[index]}')),
@@ -193,5 +202,21 @@ class _AccountScreenState extends State<AccountScreen> {
         ],
       ),
     );
+  }
+  _confirmLogout() {
+    var baseDialog = BaseAlertDialog(
+        title: Constant.LBL_CONFIRM,
+        content: Constant.LBL_CONFIRM_MSG,
+        yesOnPressed: () {
+          authViewModel.logOutApi(context);
+        },
+        noOnPressed: () {
+          Navigator.of(context, rootNavigator: true)
+              .pop(false);
+        },
+        yes: Constant.LBL_YES,
+        no: Constant.LBL_NO
+    );
+    showDialog(context: context, builder: (BuildContext context) => baseDialog);
   }
 }
