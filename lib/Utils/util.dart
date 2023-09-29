@@ -82,7 +82,13 @@ class Utils{
     }
     return "";
   }
-
+  static String isAcceptTermsAndCondition(bool status) {
+    if (!status) {
+      return Utils.toastMessage("Please select Terms & Conditions checkbox");
+    } else {
+      return "";
+    }
+  }
   static disableLoader(BuildContext context){
     Navigator.of(context, rootNavigator: true).pop();
     //Navigator.pop(context);

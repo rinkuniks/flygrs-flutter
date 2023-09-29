@@ -14,4 +14,6 @@ class AppUrl {
 
   //Get Profile
   static var getProfileApiEndPoint = '$baseUrl/profile';
+  static var updateProfileApiEndPoint = '$baseUrl/update_profile';
+
 }

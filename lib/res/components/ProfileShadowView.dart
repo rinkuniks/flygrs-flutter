@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/res/components/AppTextField.dart';
 import 'package:flygrs/res/components/Dropdown.dart';
+
+import '../../Utils/constant.dart';
 class ProfileShadowView extends StatefulWidget {
   const ProfileShadowView({
     super.key,
@@ -12,6 +14,7 @@ class ProfileShadowView extends StatefulWidget {
     this.controller,
     this.keyboardType,
     this.onTap,
+    this.isEnabled
 
   });
   final String? title1;
@@ -21,6 +24,7 @@ class ProfileShadowView extends StatefulWidget {
   final TextEditingController? controller;
   final Function? onTap;
   final TextInputType? keyboardType;
+  final bool? isEnabled;
 
   @override
   State<ProfileShadowView> createState() => _ProfileShadowViewState();
@@ -62,6 +66,8 @@ class _ProfileShadowViewState extends State<ProfileShadowView> {
                   child: Directionality(
                     textDirection: TextDirection.rtl,
                     child: TextFormField(
+                      enabled: widget.isEnabled,
+                      readOnly: (widget.title1 == Constant.LBL_BIRTHDAY) ? false : true ,
                       textAlign: TextAlign.right,
                       controller: widget.controller,
                       keyboardType: widget.keyboardType ?? TextInputType.text,

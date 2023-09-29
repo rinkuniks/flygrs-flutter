@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flygrs/Utils/res/colors.dart';
 import 'package:flygrs/Utils/route/routeName.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({super.key});
@@ -20,19 +21,22 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
       const Center(
           child: Pages(
         title: "Captain America",
-        subTitle: "This is the first page which you are looking above with the image.",
+        subTitle:
+            "This is the first page which you are looking above with the image.",
         imgPath: "assets/images/getStartedImage.png",
       )),
       const Center(
           child: Pages(
         title: "Ironman",
-        subTitle: "This is the Second page which you are looking above with the image.",
+        subTitle:
+            "This is the Second page which you are looking above with the image.",
         imgPath: "assets/images/slider2.png",
       )),
       const Center(
           child: Pages(
         title: "Thor",
-        subTitle: "This is the Third page which you are looking above with the image.",
+        subTitle:
+            "This is the Third page which you are looking above with the image.",
         imgPath: "assets/images/slider3.png",
       )),
     ];
@@ -54,7 +58,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      padding: const EdgeInsets.only(left: 24, right: 24, top: 40),
+                      padding:
+                          const EdgeInsets.only(left: 24, right: 24, top: 40),
                       color: AppColors.primaryBackgroundColor,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,31 +69,32 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                             style:
                                 TextStyle(color: AppColors.white, fontSize: 12),
                           ),
-                          Row(
-                            children: [
-                              InkWell(
-                                child: const Text(
+                          (_activePage == 0) ? InkWell(
+                            onTap: () async {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString('isIntroDone', '1');
+                              Navigator.pushNamed(context, RouteName.signupLogin);
+                            },
+                            child: Row(
+                              children: [
+                                const Text(
                                   "Skip",
                                   style: TextStyle(
                                       fontSize: 12, color: AppColors.white),
                                 ),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RouteName.bottomNavigation);
-                                },
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              ClipRRect(
-                                child: Image.asset(
-                                  'assets/images/skip.png',
-                                  height: 15,
-                                  width: 15,
+                                const SizedBox(
+                                  width: 5,
                                 ),
-                              ),
-                            ],
-                          )
+                                ClipRRect(
+                                  child: Image.asset(
+                                    'assets/images/skip.png',
+                                    height: 15,
+                                    width: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ) : Container(width: 70,)
                         ],
                       ),
                     ),
@@ -156,29 +162,34 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: GestureDetector(
-                      child: Container(
-                          width: 120,
-                          height: 40,
-                          alignment: Alignment.center,
-                          decoration: const BoxDecoration(
-                            color: Colors.black,
-                            image: DecorationImage(
-                                image: AssetImage("assets/images/btnBg.png"),
-                                fit: BoxFit.cover),
-                          ),
-                          child: const Text("Get Started",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "Poppins",
-                                  color: AppColors.white))),
-                      onTap: () {
-                        if (kDebugMode) {
+                      child: (_activePage == 2)
+                          ? Container(
+                              width: 120,
+                              height: 40,
+                              alignment: Alignment.center,
+                              decoration: const BoxDecoration(
+                                color: Colors.black,
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/btnBg.png"),
+                                    fit: BoxFit.cover),
+                              ),
+                              child: const Text("Get Started",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: "Poppins",
+                                      color: AppColors.white)))
+                          : Container(
+                              width: 120,
+                              height: 40,
+                            ),
+                      onTap: () async {
                           // Utils.snackBar("Clicked", context);
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setString('isIntroDone', '1');
                           Navigator.pushNamed(context, RouteName.signupLogin);
-                        }
-                      }
-                      ),
+                      }),
                 ),
               ),
             ),
@@ -195,6 +206,7 @@ class Pages extends StatelessWidget {
   final imgPath;
 
   const Pages({super.key, this.title, this.subTitle, this.imgPath});
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -225,13 +237,13 @@ class Pages extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: AppColors.black),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Text(
                 subTitle,
                 textAlign: TextAlign.left,
-                style: const TextStyle(
-                    fontSize: 16,
-                    color: AppColors.black),
+                style: const TextStyle(fontSize: 16, color: AppColors.black),
               ),
             ],
           ),

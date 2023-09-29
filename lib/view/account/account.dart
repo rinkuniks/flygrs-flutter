@@ -61,7 +61,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          Constant.LBL_APPLE,
+                          Constant.LBL_ACCOUNT,
                           style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 24,

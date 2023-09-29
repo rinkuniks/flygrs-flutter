@@ -4,26 +4,33 @@ import '../../Utils/res/colors.dart';
 import 'Dropdown.dart';
 
 class GenderView extends StatefulWidget {
-  const GenderView({super.key});
+   GenderView({
+    super.key,
+    this.onSelectParam,
+     this.defaultOption,
+     this.isEdit
+  });
+  Function(String)? onSelectParam;
+  String? defaultOption;
+  bool? isEdit;
 
   @override
   State<GenderView> createState() => _GenderViewState();
 }
 
 class _GenderViewState extends State<GenderView> {
+  String dropdownvalue = 'male';
 
-  // Initial Selected Value
-  String dropdownvalue = 'Item 1';
   // List of items in our dropdown menu
   var items = [
-    'Male',
-    'Female',
-    'Other',
+    'male',
+    'female',
+    'other',
   ];
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
         height: 58,
         padding: EdgeInsets.only(left: 17, right: 17),
         width: MediaQuery.of(context).size.width,
@@ -49,8 +56,32 @@ class _GenderViewState extends State<GenderView> {
             ),
             Row(
               children: [
-                Dropdown(items: items),
-                SizedBox(width: 2,),
+                // Dropdown(items: items),
+                (widget.isEdit == false) ? Text(widget.defaultOption ?? 'male') :
+                DropdownButton(
+                  // Initial Value
+                  value: dropdownvalue,
+                  // Down Arrow Icon
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  // Array list of items
+                  items: items.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownvalue = newValue!;
+                      widget.onSelectParam!(newValue!);
+                    });
+                  },
+                ),
+                SizedBox(
+                  width: 2,
+                ),
                 Image.asset(
                   'assets/images/arrow.png',
                   height: 10,

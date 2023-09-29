@@ -186,6 +186,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
             left: 0,
             child: Column(
               children: [
+                if (!isSignupScreen)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -363,7 +364,7 @@ class _SignupLoginViewState extends State<SignupLoginView> {
           AppTextField(
             controller: confirmPasswordC,
             hintText: "Confirm Passwrod",
-            isPassword: false,
+            isPassword: true,
             obSecure: true,
             keyboardType: TextInputType.text,
           ),
@@ -470,7 +471,8 @@ class _SignupLoginViewState extends State<SignupLoginView> {
         Utils.validEmail(emailC.text).isEmpty &&
         Utils.validPassword(passwordC.text).isEmpty &&
         Utils.comparePassword(passwordC.text, confirmPasswordC.text).isEmpty &&
-        Utils.validPhone(passwordC.text).isEmpty) {
+        Utils.validPhone(phoneC.text).isEmpty &&
+        Utils.isAcceptTermsAndCondition(isChecked).isEmpty) {
       Map data = {
         "name": nameC.text,
         "email": emailC.text,

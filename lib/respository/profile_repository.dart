@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flygrs/models/ProfileResponse.dart';
 import 'package:flygrs/view_model/profile_view_model.dart';
 
@@ -11,6 +13,15 @@ class ProfileRepository{
   Future<ProfileResponse> profileDetailApi() async{
     try{
       dynamic response = await _apiServices.getGetApiResponse(AppUrl.getProfileApiEndPoint);
+      return response = ProfileResponse.fromJson(response);
+    }catch(e){
+      rethrow;
+    }
+  }
+
+  Future<ProfileResponse> profileUpdateApi(Map<String, String> data, File file) async{
+    try{
+      dynamic response = await _apiServices.getPostApiWithMultipartResponse(AppUrl.updateProfileApiEndPoint, data, file);
       return response = ProfileResponse.fromJson(response);
     }catch(e){
       rethrow;

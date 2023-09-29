@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flygrs/models/LoginResponse.dart';
+import '../../Utils/constant.dart';
 import '../../Utils/route/routeName.dart';
 import '../login_view_model.dart';
 
@@ -10,12 +11,11 @@ class SplashServices {
     getUserdata().then((value) async {
       print(value.token);
       if (value.token == null || value.token.toString() == '') {
-        print(">>>>>>>>>>>>>>>>");
         await Future.delayed(const Duration(seconds: 3));
-        Navigator.pushNamed(context, RouteName.getStartedScreen);
-        // Navigator.pushNamed(context, RouteName.login);
+        // Navigator.pushNamed(context, RouteName.getStartedScreen);
+        Navigator.pushNamed(context, RouteName.signupLogin);
       } else {
-        print("????????????????");
+        Constant.TOKEN = value.token!;
         await Future.delayed(const Duration(seconds: 3));
         Navigator.pushNamed(context, RouteName.bottomNavigation);
       }
