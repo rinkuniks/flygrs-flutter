@@ -191,7 +191,7 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
                     height: 40,
                     title: 'Book Now',
                     onTap: () {
-                      _dialogBuilder(context);
+
                     }
                 ),
               ],
@@ -201,91 +201,6 @@ class _OnGoingScreenState extends State<OnGoingScreen> {
       )
     ],
       ),
-    );
-  }
-  Future<void> _dialogBuilder(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColors.primaryBackgroundColor,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(30.0))),
-          title: SvgPicture.asset("assets/images/tick.svg"),
-          content: const SizedBox(
-            height: 70,
-            child: Column(
-              children: [
-                Text('Booking Successful',
-                    style: TextStyle(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20)),
-                SizedBox(height: 10,),
-                Text('Your booking has been confirmed.',
-                    style: TextStyle(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14)),
-                Text('Driver will arrive in 2 Minutes.',
-                    style: TextStyle(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14)),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            Column(
-              children: [
-                const Divider(
-                  thickness: 1,
-                  color: AppColors.white,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          "Cancel",
-                          style: TextStyle(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                        ),
-                      ),
-                    ),
-                    Image.asset("assets/images/line.png"),
-                    InkWell(
-                      onTap: () {
-                         Navigator.pop(context);
-                         Future.delayed(const Duration(milliseconds: 100), () {
-                           Navigator.pushNamed(context, RouteName.rideCompleted);
-                         });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          "Done",
-                          style: TextStyle(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            )
-          ],
-        );
-      },
     );
   }
 }

@@ -16,4 +16,9 @@ class AppUrl {
   static var getProfileApiEndPoint = '$baseUrl/profile';
   static var updateProfileApiEndPoint = '$baseUrl/update_profile';
 
+  //Get Chauffeur List
+  static var getChauffeurListApiEndPoint = '$baseUrl/chauffeur_list';
+  static var bookingApiEndPoint = '$baseUrl/submit_booking';
+
+
 }

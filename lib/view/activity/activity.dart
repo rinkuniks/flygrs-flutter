@@ -33,6 +33,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
         _range = '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} -'
             // ignore: lines_longer_than_80_chars
             ' ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
+        print(_range);
       } else if (args.value is DateTime) {
         _selectedDate = args.value.toString();
       } else if (args.value is List<DateTime>) {
@@ -286,9 +287,9 @@ class _ActivityScreenState extends State<ActivityScreen> {
                       isShowCalendar = false;
                     });
                   },
-                  view: DateRangePickerView.year,
+                  view: DateRangePickerView.month,
                   backgroundColor: AppColors.white,
-                  // onSelectionChanged: _onSelectionChanged,
+                  onSelectionChanged: _onSelectionChanged,
                   selectionMode: DateRangePickerSelectionMode.range,
                 ),
               ),
